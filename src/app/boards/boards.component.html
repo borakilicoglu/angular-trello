@@ -9,7 +9,7 @@
   </div> -->
   <div class="row">
     <div *ngFor="let board of boards; let i = index" class="col-md-3 col-sm-12">
-      <div class="card jumbotron" (click)="goToBoard(board.id)">
+      <div class="jumbotron" (click)="goToBoard(board.id)">
         <p class="mb-0 font-weight-bold">{{ board.name }}</p>
       </div>
     </div>

@@ -31,9 +31,13 @@ export class ListComponent implements OnInit {
       });
   }
 
-  addCard() {
-    this.edited = true;
-    console.log(this.edited);
+  addCard(name: string, id: string) {
+    console.log(name);
+    console.log(id);
+  }
+
+  toggleCard() {
+    this.edited = !this.edited;
   }
 
 }

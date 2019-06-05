@@ -12,7 +12,7 @@ export class BoardComponent implements OnInit {
   private sub: any;
   isLoading = false;
   name: string;
-  lists: Object;
+  board: Object;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +29,8 @@ export class BoardComponent implements OnInit {
           })
         )
         .subscribe(data => {
-          this.lists = data.lists;
-          this.name = data.name;
+          this.board = data
+          console.log(this.board)
         });
     });
   }
