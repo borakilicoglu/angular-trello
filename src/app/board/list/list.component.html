@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <div class="d-flex">
+    <div class="flex-fill align-self-center">
+      <p class="mb-0 font-weight-bold" [hidden]="isLoading">{{ list.name }}</p>
+    </div>
+    <div class="flex-fill">
+      <button type="button" class="btn btn-default float-right">
+        <i class="fas fa-ellipsis-h"></i>
+      </button>
+    </div>
+  </div>
+  <div *ngFor="let card of cards; let i = index" class="card">
+    <p class="mb-0 p-1">{{ card.name }}</p>
+  </div>
+  <button type="button" class="btn btn-secondary btn-sm btn-block text-left" (click)="addCard()" *ngIf="!edited">
+    <i class="fas fa-plus"></i>
+    Add another card
+  </button>
+
+  <div class="card-composer" *ngIf="edited">
+    <div class="list-card js-composer">
+      <div class="list-card-details u-clearfix">
+        <div class="list-card-labels u-clearfix js-list-card-composer-labels"></div>
+        <textarea
+          class="list-card-composer-textarea js-card-title"
+          dir="auto"
+          placeholder="Enter a title for this card…"
+          spellcheck="false"
+          style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 54px;"
+        ></textarea>
+        <div class="list-card-members js-list-card-composer-members"></div>
+      </div>
+    </div>
+    <div class="cc-controls u-clearfix">
+      <div class="cc-controls-section">
+        <input class="primary confirm mod-compact js-add-card" type="submit" value="Add Card" /><a
+          class="icon-lg icon-close dark-hover js-cancel"
+          href="#"
+        ></a>
+      </div>
+      <div class="cc-controls-section mod-right">
+        <a class="icon-lg icon-overflow-menu-horizontal dark-background-hover js-cc-menu" href="#"></a>
+      </div>
+    </div>
+  </div>
+</div>

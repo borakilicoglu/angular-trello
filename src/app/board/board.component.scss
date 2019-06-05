@@ -1,0 +1,13 @@
+@import "src/theme/theme-variables";
+
+.sub-header {
+  background: #e4606d;
+  margin-bottom: $spacer;
+}
+
+.jumbotron {
+  padding: 2rem 2rem !important;
+  &:hover {
+    cursor: pointer;
+  }
+}

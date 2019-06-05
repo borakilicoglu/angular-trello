@@ -1,0 +1,14 @@
+<app-loader [isLoading]="isLoading"></app-loader>
+
+<div class="container-fluid" [hidden]="isLoading">
+  <div class="row sub-header">
+    <div class="col-12">
+      <h6 class="mb-2 mt-2 text-light">{{ name }}</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let list of lists; let i = index" class="col-md-3 col-sm-12">
+      <app-list [id]="list.id"></app-list>
+    </div>
+  </div>
+</div>
