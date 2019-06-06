@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
   constructor(private http: HttpClient) { }
-  getBoards() {
-    return this.http.get('http://localhost:4000/api/boards');
+
+  // creates header
+  private _authHeader(): Object {
+    return {
+      headers: new HttpHeaders({ 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('credentials')).token}` })
+    };
   }
-  getBoard(id: string) {
-    return this.http.get(`http://localhost:4000/api/boards?id=${id}`);
+
+  createCard(name: string, description: string, list: string) {
+    return this.http.post<any>(`http://localhost:4000/api/cards/list/${list}`, { name, description }, this._authHeader())
+      .pipe(map(card => {
+        return card;
+      }));
   }
 }

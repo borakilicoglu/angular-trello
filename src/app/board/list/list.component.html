@@ -29,7 +29,9 @@
         placeholder="Enter a title for this card…"
       />
     </div>
-    <button type="button" class="btn btn-success btn-sm">Add Card</button>
+    <button type="button" class="btn btn-success btn-sm" (click)="addCard('Boras', 'super set', list.id)">
+      Add Card
+    </button>
     <button type="button" class="btn btn-sm float-right">
       <i class="fas fa-window-close" (click)="toggleCard()" *ngIf="edited"></i>
     </button>
