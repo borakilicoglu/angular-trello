@@ -8,7 +8,6 @@ import { map } from 'rxjs/operators';
 export class CardService {
   constructor(private http: HttpClient) { }
 
-  // creates header
   private _authHeader(): Object {
     return {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('credentials')).token}` })
@@ -16,6 +15,20 @@ export class CardService {
   }
 
   createCard(name: string, description: string, list: string) {
+    return this.http.post<any>(`http://localhost:4000/api/cards/list/${list}`, { name, description }, this._authHeader())
+      .pipe(map(card => {
+        return card;
+      }));
+  }
+
+  updateCard(name: string, description: string, list: string) {
+    return this.http.post<any>(`http://localhost:4000/api/cards/list/${list}`, { name, description }, this._authHeader())
+      .pipe(map(card => {
+        return card;
+      }));
+  }
+
+  deleteCard(name: string, description: string, list: string) {
     return this.http.post<any>(`http://localhost:4000/api/cards/list/${list}`, { name, description }, this._authHeader())
       .pipe(map(card => {
         return card;

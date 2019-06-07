@@ -1,0 +1,23 @@
+<div class="card">
+  <!-- <input class="form-control" type="text" placeholder="{{ card.name }}" readonly /> -->
+  <!-- {{ card.description }} -->
+  <div class="input-group">
+    <input
+      type="text"
+      value="{{ card.name }}"
+      class="form-control border-0"
+      #input
+      [readonly]="isReadOnly"
+      [style.height]="isReadOnly ? '38px' : '100px'"
+    />
+    <div class="input-group-prepend" (click)="editCard()">
+      <div class="input-group-text">
+        <i class="far fa-edit"></i>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-success btn-sm" (click)="addCard('Boras', 'super set', list.id)">
+    Update Card
+  </button>
+</div>

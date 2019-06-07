@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { ListService } from '../../services/list.service'
-import { CardService } from '../../services/card.service'
+import { ListService } from '../services/list.service'
+import { CardService } from '../services/card.service'
 
 export interface List {
   name: string;
@@ -17,7 +17,6 @@ export interface List {
 export class ListComponent implements OnInit {
   @Input() id: string;
   isLoading = false;
-  edited = false;
   list: Object;
   cards: string[] = [];
 
@@ -50,10 +49,6 @@ export class ListComponent implements OnInit {
       .subscribe(data => {
         this.cards.push(data);
       });
-  }
-
-  toggleCard() {
-    this.edited = !this.edited;
   }
 
 }

@@ -10,7 +10,6 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(`http://localhost:4000/auth/login`, { username, password })
       .pipe(map(user => {
-        console.log(user);
         return user;
       }));
   }

@@ -30,7 +30,6 @@ export class BoardComponent implements OnInit {
         )
         .subscribe(data => {
           this.board = data
-          console.log(this.board)
         });
     });
   }

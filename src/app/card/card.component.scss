@@ -1,0 +1,14 @@
+.card {
+  margin-bottom: 0.5rem;
+  input {
+    background: #fff;
+  }
+  .input-group-text {
+    background: none;
+    cursor: pointer;
+    border: 0px;
+    i {
+      color: #868e96;
+    }
+  }
+}
