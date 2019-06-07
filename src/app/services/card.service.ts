@@ -21,15 +21,15 @@ export class CardService {
       }));
   }
 
-  updateCard(name: string, description: string, list: string) {
-    return this.http.post<any>(`http://localhost:4000/api/cards/list/${list}`, { name, description }, this._authHeader())
+  updateCard(id: string, name: string) {
+    return this.http.put<any>(`http://localhost:4000/api/cards/${id}`, { name }, this._authHeader())
       .pipe(map(card => {
         return card;
       }));
   }
 
-  deleteCard(name: string, description: string, list: string) {
-    return this.http.post<any>(`http://localhost:4000/api/cards/list/${list}`, { name, description }, this._authHeader())
+  deleteCard(list: string) {
+    return this.http.delete<any>(`http://localhost:4000/api/cards/${list}`, this._authHeader())
       .pipe(map(card => {
         return card;
       }));

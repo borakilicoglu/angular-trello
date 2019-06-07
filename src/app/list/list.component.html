@@ -10,7 +10,7 @@
     </div>
   </div>
   <app-card *ngFor="let card of cards; let i = index" [card]="card"></app-card>
-  <button type="button" class="btn btn-secondary btn-sm btn-block text-left" (click)="toggleCard()" *ngIf="!edited">
+  <button type="button" class="btn btn-secondary btn-block text-left" (click)="toggleCard()" *ngIf="!edited">
     <i class="fas fa-plus"></i>
     Add another card
   </button>
@@ -18,16 +18,16 @@
     <div class="form-group mb-2">
       <input
         type="text"
-        class="form-control form-control p-2"
-        id="formGroupExampleInput"
+        #input
+        class="form-control p-2 border-0"
+        [(ngModel)]="cardName"
+        name="cardName"
         placeholder="Enter a title for this card…"
       />
     </div>
-    <button type="button" class="btn btn-success btn-sm" (click)="addCard('Boras', 'super set', list.id)">
+    <button type="button" class="btn btn-success" (click)="addCard(cardName, 'super set', list.id)">
       Add Card
     </button>
-    <button type="button" class="btn btn-sm float-right">
-      <i class="fas fa-window-close" (click)="toggleCard()" *ngIf="edited"></i>
-    </button>
+    <button class="btn btn-danger float-right" (click)="toggleCard()"><i class="fa fa-times"></i></button>
   </form>
 </div>

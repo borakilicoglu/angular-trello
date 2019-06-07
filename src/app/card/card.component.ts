@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { CardService } from '../services/card.service'
 
 @Component({
   selector: 'app-card',
@@ -8,20 +9,31 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 export class CardComponent implements OnInit {
   @ViewChild('input') searchElement: ElementRef;
   @Input() card: Object;
-  edited = false;
   isReadOnly = true;
 
-  constructor() { }
+  constructor(
+    private cardService: CardService,
+  ) { }
 
   ngOnInit() {
-  }
-
-  toggleCard() {
-    this.edited = !this.edited;
   }
 
   editCard() {
     this.searchElement.nativeElement.focus();
     this.isReadOnly = !this.isReadOnly;
+  }
+
+  updateCard(id: string, name: string) {
+    this.cardService.updateCard(id, name)
+      .subscribe(data => {
+        this.isReadOnly = true;
+      });
+  }
+
+  deleteCard(list: string) {
+    this.cardService.deleteCard(list)
+      .subscribe(data => {
+        console.log('Card deleted');
+      });
   }
 }

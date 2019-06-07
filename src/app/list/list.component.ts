@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { ListService } from '../services/list.service'
 import { CardService } from '../services/card.service'
@@ -16,8 +16,11 @@ export interface List {
 })
 export class ListComponent implements OnInit {
   @Input() id: string;
+  @ViewChild('input') searchElement: ElementRef;
   isLoading = false;
   list: Object;
+  edited = false;
+  cardName: string = '';
   cards: string[] = [];
 
   constructor(
@@ -27,11 +30,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.listService.getList(this.id)
-      // .pipe(
-      //   finalize(() => {
-      //     this.isLoading = false;
-      //   })
-      // )
       .subscribe(list => {
         this.list = list;
         this.cards = list["cards"];
@@ -47,8 +45,13 @@ export class ListComponent implements OnInit {
         })
       )
       .subscribe(data => {
+        this.searchElement.nativeElement.value = '';
         this.cards.push(data);
       });
+  }
+
+  toggleCard() {
+    this.edited = !this.edited;
   }
 
 }

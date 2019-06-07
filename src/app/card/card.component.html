@@ -1,23 +1,23 @@
-<div class="card">
-  <!-- <input class="form-control" type="text" placeholder="{{ card.name }}" readonly /> -->
-  <!-- {{ card.description }} -->
+<div class="card border-0">
   <div class="input-group">
     <input
       type="text"
-      value="{{ card.name }}"
       class="form-control border-0"
       #input
+      [(ngModel)]="card.name"
       [readonly]="isReadOnly"
       [style.height]="isReadOnly ? '38px' : '100px'"
     />
     <div class="input-group-prepend" (click)="editCard()">
       <div class="input-group-text">
-        <i class="far fa-edit"></i>
+        <i class="far fa-edit" [hidden]="!isReadOnly"></i>
+        <i class="fas fa-times" [hidden]="isReadOnly"></i>
       </div>
     </div>
   </div>
+</div>
 
-  <button type="button" [hidden]="isReadOnly" class="btn btn-success btn-sm" (click)="updateCard()">
-    Update Card
-  </button>
+<div class="btn-group mb-2 d-flex" role="group" *ngIf="!isReadOnly">
+  <button type="button" class="btn btn-outline-success" (click)="updateCard(card.id, card.name)">Update</button>
+  <button type="button" class="btn btn-outline-danger" (click)="deleteCard(card.id)">Delete</button>
 </div>

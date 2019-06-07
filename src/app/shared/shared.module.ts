@@ -8,4 +8,4 @@ import { LoaderComponent } from './loader/loader.component';
   declarations: [LoaderComponent],
   exports: [LoaderComponent]
 })
-export class SharedModule {}
+export class SharedModule { }
