@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-success btn-sm" (click)="addCard('Boras', 'super set', list.id)">
+  <button type="button" [hidden]="isReadOnly" class="btn btn-success btn-sm" (click)="updateCard()">
     Update Card
   </button>
 </div>
