@@ -7,6 +7,7 @@ import { CardService } from '../services/card.service'
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  @Input() public deleteCard: Function;
   @ViewChild('input') searchElement: ElementRef;
   @Input() card: Object;
   isReadOnly = true;
@@ -27,13 +28,6 @@ export class CardComponent implements OnInit {
     this.cardService.updateCard(id, name)
       .subscribe(data => {
         this.isReadOnly = true;
-      });
-  }
-
-  deleteCard(list: string) {
-    this.cardService.deleteCard(list)
-      .subscribe(data => {
-        console.log('Card deleted');
       });
   }
 }

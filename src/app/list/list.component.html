@@ -9,7 +9,7 @@
       </button>
     </div>
   </div>
-  <app-card *ngFor="let card of cards; let i = index" [card]="card"></app-card>
+  <app-card *ngFor="let card of cards; let i = index" [card]="card" [deleteCard]="deleteCard"></app-card>
   <button type="button" class="btn btn-secondary btn-block text-left" (click)="toggleCard()" *ngIf="!edited">
     <i class="fas fa-plus"></i>
     Add another card

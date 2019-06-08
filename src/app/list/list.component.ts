@@ -50,6 +50,13 @@ export class ListComponent implements OnInit {
       });
   }
 
+  deleteCard(list: string) {
+    this.cardService.deleteCard(list)
+      .subscribe(data => {
+        console.log('Card deleted');
+      });
+  }
+
   toggleCard() {
     this.edited = !this.edited;
   }

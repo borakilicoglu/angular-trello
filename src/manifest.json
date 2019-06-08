@@ -1,14 +1,16 @@
 {
-  "name": "ngX-Rocket",
-  "short_name": "ngX-Rocket",
-  "theme_color": "#488aff",
-  "background_color": "#488aff",
+  "name": "angular-trello",
+  "short_name": "angular-trello",
+  "theme_color": "#dc3545",
+  "background_color": "#dc3545",
   "scope": "/",
   "start_url": "/",
   "display": "standalone",
-  "icons": [{
-    "src": "assets/ngx-rocket-logo.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }]
+  "icons": [
+    {
+      "src": "assets/angular-trello.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
