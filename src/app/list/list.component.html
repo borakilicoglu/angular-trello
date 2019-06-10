@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron shadow">
   <div class="d-flex">
     <div class="flex-fill align-self-center">
       <p class="mb-0 font-weight-bold" *ngIf="list">{{ list.name }}</p>
@@ -10,7 +10,7 @@
     </div>
   </div>
   <app-card *ngFor="let card of cards; let i = index" [card]="card" [deleteCard]="deleteCard"></app-card>
-  <button type="button" class="btn btn-secondary btn-block text-left" (click)="toggleCard()" *ngIf="!edited">
+  <button type="button" class="btn btn-outline-secondary btn-block text-left" (click)="toggleCard()" *ngIf="!edited">
     <i class="fas fa-plus"></i>
     Add another card
   </button>

@@ -9,6 +9,12 @@ export interface List {
   done: boolean;
 }
 
+export interface Card {
+  id: string;
+  name: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -21,7 +27,7 @@ export class ListComponent implements OnInit {
   list: Object;
   edited = false;
   cardName: string = '';
-  cards: string[] = [];
+  cards: Card[];
 
   constructor(
     private listService: ListService,
@@ -36,7 +42,7 @@ export class ListComponent implements OnInit {
       });
   }
 
-  addCard(name: string, description: string, list: string) {
+  addCard = (name: string, description: string, list: string) => {
     this.isLoading = true;
     this.cardService.createCard(name, description, list)
       .pipe(
@@ -45,19 +51,20 @@ export class ListComponent implements OnInit {
         })
       )
       .subscribe(data => {
-        this.searchElement.nativeElement.value = '';
+        this.cardName = "";
+        this.edited = false;
         this.cards.push(data);
       });
   }
 
-  deleteCard(list: string) {
-    this.cardService.deleteCard(list)
+  deleteCard = (id: string) => {
+    this.cardService.deleteCard(id)
       .subscribe(data => {
-        console.log('Card deleted');
+        this.cards.splice(this.cards.findIndex(x => x.id === id), 1);
       });
   }
 
-  toggleCard() {
+  toggleCard = () => {
     this.edited = !this.edited;
   }
 

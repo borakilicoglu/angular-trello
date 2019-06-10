@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { BoardService } from '../services/board.service'
+import { ListService } from '../services/list.service'
 
 @Component({
   selector: 'app-board',
@@ -13,10 +14,13 @@ export class BoardComponent implements OnInit {
   isLoading = false;
   name: string;
   board: Object;
+  active = true;
+  listName: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
+    private listService: ListService
   ) { }
 
   ngOnInit() {
@@ -34,8 +38,28 @@ export class BoardComponent implements OnInit {
     });
   }
 
+  addList = (boardId: string, name: string) => {
+    this.isLoading = true;
+    this.listService.addList(boardId, name)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(data => {
+        console.log(data)
+        // this.cardName = "";
+        // this.edited = false;
+        // this.cards.push(data);
+      });
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  toggleActive = () => {
+    this.active = !this.active;
   }
 
 }
