@@ -1,13 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { Component, OnInit, Input } from '@angular/core';
 import { ListService } from '../services/list.service'
 import { CardService } from '../services/card.service'
-
-export interface List {
-  name: string;
-  description: string;
-  done: boolean;
-}
 
 export interface Card {
   id: string;
@@ -21,13 +14,12 @@ export interface Card {
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  @Input() public deleteList: Function;
   @Input() id: string;
-  @ViewChild('input') searchElement: ElementRef;
-  isLoading = false;
-  list: Object;
-  edited = false;
-  cardName: string = '';
   cards: Card[];
+  list: Object;
+  cardName: string;
+  form = false;
 
   constructor(
     private listService: ListService,
@@ -43,17 +35,11 @@ export class ListComponent implements OnInit {
   }
 
   addCard = (name: string, description: string, list: string) => {
-    this.isLoading = true;
     this.cardService.createCard(name, description, list)
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
       .subscribe(data => {
+        this.cards = [...this.cards, data]
+        this.toggleForm();
         this.cardName = "";
-        this.edited = false;
-        this.cards.push(data);
       });
   }
 
@@ -64,8 +50,8 @@ export class ListComponent implements OnInit {
       });
   }
 
-  toggleCard = () => {
-    this.edited = !this.edited;
+  toggleForm = () => {
+    this.form = !this.form;
   }
 
 }

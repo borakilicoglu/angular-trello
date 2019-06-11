@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs'
 
 @Injectable({
@@ -20,5 +21,12 @@ export class ListService {
 
   addList(boardId: string, name: string): Observable<any> {
     return this.http.post(`http://localhost:4000/api/lists/board/${boardId}`, { name }, this._authHeader());
+  }
+
+  deleteList(id: string) {
+    return this.http.delete<any>(`http://localhost:4000/api/lists/${id}`, this._authHeader())
+      .pipe(map(list => {
+        return list;
+      }));
   }
 }

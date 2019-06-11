@@ -4,17 +4,17 @@
       <p class="mb-0 font-weight-bold" *ngIf="list">{{ list.name }}</p>
     </div>
     <div class="flex-fill">
-      <button type="button" class="btn btn-default float-right">
+      <button type="button" class="btn btn-default float-right" (click)="deleteList(list.id)">
         <i class="fas fa-ellipsis-h"></i>
       </button>
     </div>
   </div>
   <app-card *ngFor="let card of cards; let i = index" [card]="card" [deleteCard]="deleteCard"></app-card>
-  <button type="button" class="btn btn-outline-secondary btn-block text-left" (click)="toggleCard()" *ngIf="!edited">
+  <button type="button" class="btn btn-outline-secondary btn-block text-left" (click)="toggleCard()" *ngIf="!form">
     <i class="fas fa-plus"></i>
     Add another card
   </button>
-  <form *ngIf="edited">
+  <form *ngIf="form">
     <div class="form-group mb-2">
       <input
         type="text"
@@ -25,7 +25,7 @@
         placeholder="Enter a title for this card…"
       />
     </div>
-    <button type="button" class="btn btn-success" (click)="addCard(cardName, 'super set', list.id)">
+    <button type="button" class="btn btn-success" (click)="addCard(cardName, '', list.id)">
       Add Card
     </button>
     <button class="btn btn-danger float-right" (click)="toggleCard()"><i class="fa fa-times"></i></button>

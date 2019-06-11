@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
-
-import { QuoteService } from './quote.service';
 import { BoardService } from '../services/board.service';
+
+export interface Board {
+  id: string;
+  name: string;
+  author: Object;
+}
 
 @Component({
   selector: 'app-home',
@@ -11,32 +14,38 @@ import { BoardService } from '../services/board.service';
   styleUrls: ['./boards.component.scss']
 })
 export class BoardsComponent implements OnInit {
-  quote: string | undefined;
-  isLoading = false;
-  boards: any;
+  boards: Board[];
+  boardName: string | undefined;
+  form = true;
 
   constructor(
-    private quoteService: QuoteService,
     private boardService: BoardService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
-      });
-
     this.boardService.getBoards().subscribe(data => {
       this.boards = data;
     });
+  }
+
+  addBoard = (name: string) => {
+    this.boardService.createBoard(name).subscribe(data => {
+      this.boards = [...this.boards, data]
+      this.toggleForm();
+      this.boardName = "";
+    });
+  }
+
+  deleteBoard = (id: string) => {
+    this.boardService.deleteBoard(id)
+      .subscribe(data => {
+        this.boards.splice(this.boards.findIndex(x => x.id === id), 1);
+      });
+  }
+
+  toggleForm = () => {
+    this.form = !this.form;
   }
 
   public goToBoard(id: string) {

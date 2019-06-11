@@ -11,7 +11,13 @@ q {
 }
 
 .jumbotron {
-  padding: 2rem 2rem !important;
+  padding: 0.5rem 0.5rem !important;
+  .btn-default:hover {
+    background-color: rgba(9, 30, 66, 0.13);
+  }
+  .fa-ellipsis-h {
+    color: #e4606d !important;
+  }
   &:hover {
     cursor: pointer;
   }

@@ -6,19 +6,14 @@
   </div>
   <div class="row">
     <div *ngFor="let list of lists; let i = index" class="col-md-3 col-sm-12">
-      <app-list [id]="list.id"></app-list>
+      <app-list [id]="list.id" [deleteList]="deleteList"></app-list>
     </div>
     <div class="col-md-3 col-sm-12">
       <div class="js-add-list list-wrapper mod-add is-idle">
-        <button
-          class="btn btn-secondary btn-block text-left mb-2"
-          (click)="toggleActive()"
-          *ngIf="active"
-          type="button"
-        >
+        <button class="btn btn-secondary btn-block text-left mb-2" (click)="toggleForm()" *ngIf="form" type="button">
           <i class="fas fa-plus"></i> Add another list
         </button>
-        <div class="jumbotron" *ngIf="!active">
+        <div class="jumbotron" *ngIf="!form">
           <input
             class="form-control mb-2 p-2 ng-untouched ng-pristine ng-valid"
             name="listName"
@@ -29,7 +24,7 @@
           <button type="button" class="btn btn-success" (click)="addList(board.id, listName)">
             Add List
           </button>
-          <button class="btn btn-danger float-right" (click)="toggleActive()">
+          <button class="btn btn-danger float-right" (click)="toggleForm()">
             <i class="fa fa-times"></i>
           </button>
         </div>

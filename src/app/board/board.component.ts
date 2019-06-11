@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { finalize } from 'rxjs/operators';
 import { BoardService } from '../services/board.service'
 import { ListService } from '../services/list.service'
 
@@ -11,6 +10,7 @@ export interface Board {
 }
 
 export interface List {
+  id: string;
   name: string;
 }
 
@@ -21,12 +21,10 @@ export interface List {
 })
 export class BoardComponent implements OnInit {
   private sub: any;
-  isLoading = false;
-  name: string;
-  board: Object;
-  active = true;
   lists: List[];
-  listName: string = '';
+  board: Object;
+  listName: string;
+  form = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,14 +33,8 @@ export class BoardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isLoading = true;
     this.sub = this.route.params.subscribe(params => {
       this.boardService.getBoard(params['id'])
-        .pipe(
-          finalize(() => {
-            this.isLoading = false;
-          })
-        )
         .subscribe(data => {
           this.board = data
           this.lists = data["lists"];
@@ -51,18 +43,18 @@ export class BoardComponent implements OnInit {
   }
 
   addList = (boardId: string, name: string) => {
-    this.isLoading = true;
     this.listService.addList(boardId, name)
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
       .subscribe(data => {
-        console.log(data)
-        // this.cardName = "";
-        // this.edited = false;
-        // this.cards.push(data);
+        this.lists = [...this.lists, data]
+        this.toggleForm();
+        this.listName = "";
+      });
+  }
+
+  deleteList = (id: string) => {
+    this.listService.deleteList(id)
+      .subscribe(data => {
+        this.lists.splice(this.lists.findIndex(x => x.id === id), 1);
       });
   }
 
@@ -70,8 +62,8 @@ export class BoardComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
-  toggleActive = () => {
-    this.active = !this.active;
+  toggleForm = () => {
+    this.form = !this.form;
   }
 
 }
