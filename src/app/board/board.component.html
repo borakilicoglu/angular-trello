@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let list of board.lists; let i = index" class="col-md-3 col-sm-12">
+    <div *ngFor="let list of lists; let i = index" class="col-md-3 col-sm-12">
       <app-list [id]="list.id"></app-list>
     </div>
     <div class="col-md-3 col-sm-12">

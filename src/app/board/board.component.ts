@@ -4,6 +4,16 @@ import { finalize } from 'rxjs/operators';
 import { BoardService } from '../services/board.service'
 import { ListService } from '../services/list.service'
 
+export interface Board {
+  name: string;
+  author: Object;
+  lists: any;
+}
+
+export interface List {
+  name: string;
+}
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -15,6 +25,7 @@ export class BoardComponent implements OnInit {
   name: string;
   board: Object;
   active = true;
+  lists: List[];
   listName: string = '';
 
   constructor(
@@ -34,6 +45,7 @@ export class BoardComponent implements OnInit {
         )
         .subscribe(data => {
           this.board = data
+          this.lists = data["lists"];
         });
     });
   }
