@@ -6,11 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { CardComponent } from './card.component';
+import { CardService } from '../services/card.service';
+
 
 @NgModule({
   imports: [CommonModule, TranslateModule, CoreModule, SharedModule, FormsModule, ReactiveFormsModule],
   declarations: [CardComponent],
-  providers: [],
+  providers: [CardService],
   exports: [CardComponent]
 })
 export class CardModule { }

@@ -2,17 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../services/board.service'
 import { ListService } from '../services/list.service'
+import { List } from '@app/list/list.interface';
 
-export interface Board {
-  name: string;
-  author: Object;
-  lists: any;
-}
 
-export interface List {
-  id: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-board',
@@ -34,8 +26,9 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.boardService.getBoard(params['id'])
-        .subscribe(data => {
+      this.boardService.read(params['id'])
+        .subscribe((data: any) => {
+          console.log(data)
           this.board = data
           this.lists = data["lists"];
         });
@@ -43,8 +36,8 @@ export class BoardComponent implements OnInit {
   }
 
   addList = (boardId: string, name: string) => {
-    this.listService.addList(boardId, name)
-      .subscribe(data => {
+    this.listService.createById(boardId, "board", { name })
+      .subscribe((data: any) => {
         this.lists = [...this.lists, data]
         this.toggleForm();
         this.listName = "";
@@ -52,7 +45,7 @@ export class BoardComponent implements OnInit {
   }
 
   deleteList = (id: string) => {
-    this.listService.deleteList(id)
+    this.listService.delete(id)
       .subscribe(data => {
         this.lists.splice(this.lists.findIndex(x => x.id === id), 1);
       });

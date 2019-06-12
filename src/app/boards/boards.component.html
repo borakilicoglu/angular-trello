@@ -1,12 +1,4 @@
 <div class="container-fluid">
-  <!-- <div class="jumbotron text-center mt-3">
-    <h1>
-      <img class="logo" src="assets/angular-trello.png" alt="angular logo" />
-      <span translate>Hello world !</span>
-    </h1>
-    <app-loader [isLoading]="isLoading"></app-loader>
-    <q [hidden]="isLoading">{{ quote }}</q>
-  </div> -->
   <div class="row">
     <div *ngFor="let board of boards; let i = index" class="col-md-3 col-sm-12">
       <div class="jumbotron">

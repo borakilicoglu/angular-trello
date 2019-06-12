@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouteReusableStrategy } from './route-reusable-strategy';
@@ -8,14 +8,14 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { CredentialsService } from './authentication/credentials.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { I18nService } from './i18n.service';
-import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
+import { AuthInterceptor } from './http/auth.interceptor';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   providers: [
     AuthenticationService,
     CredentialsService,
@@ -26,13 +26,10 @@ import { CacheInterceptor } from './http/cache.interceptor';
     ErrorHandlerInterceptor,
     CacheInterceptor,
     {
-      provide: HttpClient,
-      useClass: HttpService
-    },
-    {
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 })
 export class CoreModule {

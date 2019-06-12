@@ -1,12 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ListService } from '../services/list.service'
 import { CardService } from '../services/card.service'
-
-export interface Card {
-  id: string;
-  name: string;
-  description: string;
-}
+import { Card } from '../card/card.interface';
 
 @Component({
   selector: 'app-list',
@@ -27,16 +22,16 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.listService.getList(this.id)
+    this.listService.read(this.id)
       .subscribe(list => {
         this.list = list;
         this.cards = list["cards"];
       });
   }
 
-  addCard = (name: string, description: string, list: string) => {
-    this.cardService.createCard(name, description, list)
-      .subscribe(data => {
+  addCard = (listId: string, name: string) => {
+    this.cardService.createById(listId, 'list', { name })
+      .subscribe((data: any) => {
         this.cards = [...this.cards, data]
         this.toggleForm();
         this.cardName = "";

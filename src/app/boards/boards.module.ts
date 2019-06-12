@@ -7,11 +7,12 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { BoardsRoutingModule } from './boards-routing.module';
 import { BoardsComponent } from './boards.component';
-import { QuoteService } from './quote.service';
+import { BoardService } from '../services/board.service';
+
 
 @NgModule({
   imports: [CommonModule, TranslateModule, CoreModule, SharedModule, BoardsRoutingModule, FormsModule, ReactiveFormsModule],
   declarations: [BoardsComponent],
-  providers: [QuoteService]
+  providers: [BoardService]
 })
 export class BoardsModule { }

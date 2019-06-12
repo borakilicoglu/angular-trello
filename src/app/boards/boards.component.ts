@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BoardService } from '../services/board.service';
+import { Board } from '@app/board/board.interface';
 
-export interface Board {
-  id: string;
-  name: string;
-  author: Object;
-}
 
 @Component({
   selector: 'app-home',
@@ -24,13 +20,13 @@ export class BoardsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.boardService.getBoards().subscribe(data => {
+    this.boardService.findAll().subscribe(data => {
       this.boards = data;
     });
   }
 
   addBoard = (name: string) => {
-    this.boardService.createBoard(name).subscribe(data => {
+    this.boardService.create({ name }).subscribe(data => {
       this.boards = [...this.boards, data]
       this.toggleForm();
       this.boardName = "";
@@ -38,7 +34,7 @@ export class BoardsComponent implements OnInit {
   }
 
   deleteBoard = (id: string) => {
-    this.boardService.deleteBoard(id)
+    this.boardService.delete(id)
       .subscribe(data => {
         this.boards.splice(this.boards.findIndex(x => x.id === id), 1);
       });

@@ -7,11 +7,12 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { CardModule } from '../card/card.module';
 import { ListComponent } from './list.component';
+import { ListService } from '../services/list.service';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, CoreModule, CardModule, SharedModule, FormsModule, ReactiveFormsModule],
   declarations: [ListComponent],
-  providers: [],
+  providers: [ListService],
   exports: [ListComponent]
 })
 export class ListModule { }

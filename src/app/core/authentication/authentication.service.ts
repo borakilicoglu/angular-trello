@@ -48,4 +48,9 @@ export class AuthenticationService {
     this.credentialsService.setCredentials();
     return of(true);
   }
+
+  getAuthorizationToken(): string {
+    const credentials = JSON.parse(localStorage.getItem('credentials'));
+    return credentials.token;
+  }
 }
