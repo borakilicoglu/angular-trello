@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../services/board.service'
 import { ListService } from '../services/list.service'
 import { List } from '@app/list/list.interface';
+import { Board } from '@app/board/board.interface';
 
 @Component({
   selector: 'app-board',
@@ -11,7 +12,7 @@ import { List } from '@app/list/list.interface';
 })
 export class BoardComponent implements OnInit {
   private sub: any;
-  board: Object;
+  board: Board;
   lists: List[];
   listName: string;
   form = true;
@@ -25,7 +26,7 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.boardService.read(params['id'])
-        .subscribe((data: any) => {
+        .subscribe((data: Board) => {
           this.board = data
           this.lists = data["lists"];
         });

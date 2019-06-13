@@ -91,5 +91,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "engines": {
+    "node": "12.3.1",
+    "npm": "6.9.0"
   }
 }
