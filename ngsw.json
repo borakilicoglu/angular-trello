@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1560417038429,
+  "timestamp": 1560436138983,
   "index": "https://borakilicoglu.github.io/angular-trello/index.html",
   "assetGroups": [
     {
@@ -10,7 +10,7 @@
       "urls": [
         "https://borakilicoglu.github.io/angular-trello/favicon.ico",
         "https://borakilicoglu.github.io/angular-trello/index.html",
-        "https://borakilicoglu.github.io/angular-trello/main.4feff05c19ef0dcba0d6.js",
+        "https://borakilicoglu.github.io/angular-trello/main.56f751236b1827128358.js",
         "https://borakilicoglu.github.io/angular-trello/polyfills.c897fd9ff58135e762ea.js",
         "https://borakilicoglu.github.io/angular-trello/runtime.26209474bfa8dc87a77c.js",
         "https://borakilicoglu.github.io/angular-trello/styles.e6a9d90b1b447be243ec.css"
@@ -31,8 +31,8 @@
   "hashTable": {
     "https://borakilicoglu.github.io/angular-trello/assets/angular-trello.png": "a6185054815801e1723a229bb0a3342a54bd0e1d",
     "https://borakilicoglu.github.io/angular-trello/favicon.ico": "51e6f90064eea7a1b24c9ae68d27b542bdbea4d7",
-    "https://borakilicoglu.github.io/angular-trello/index.html": "5b651befedac5cbc400f55533225c17676a83be0",
-    "https://borakilicoglu.github.io/angular-trello/main.4feff05c19ef0dcba0d6.js": "4aab364c90762c4d60ab7a8669ae09bc39b7a990",
+    "https://borakilicoglu.github.io/angular-trello/index.html": "f26d7f4cfa5d1315957d8b89d6db752a7bf1bfdd",
+    "https://borakilicoglu.github.io/angular-trello/main.56f751236b1827128358.js": "ee775c3c0cbd438dcb3da3b6878fc150eacd517c",
     "https://borakilicoglu.github.io/angular-trello/polyfills.c897fd9ff58135e762ea.js": "6946e10a03311677a01490b8e91741668e64e17e",
     "https://borakilicoglu.github.io/angular-trello/runtime.26209474bfa8dc87a77c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "https://borakilicoglu.github.io/angular-trello/styles.e6a9d90b1b447be243ec.css": "7cbb4df6bef5198f7290e7a2f8175980052a5c47"
