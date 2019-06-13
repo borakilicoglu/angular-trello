@@ -6,6 +6,6 @@ import { BaseService } from './base.service';
 @Injectable()
 export class BoardService extends BaseService<Board, string> {
   constructor(protected _http: HttpClient) {
-    super(_http, "http://localhost:3000/api/boards");
+    super(_http, "boards");
   }
 }

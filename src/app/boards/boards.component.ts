@@ -11,7 +11,7 @@ import { Board } from '@app/board/board.interface';
 })
 export class BoardsComponent implements OnInit {
   boards: Board[];
-  boardName: string | undefined;
+  boardName: string;
   form = true;
 
   constructor(

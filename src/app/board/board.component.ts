@@ -4,8 +4,6 @@ import { BoardService } from '../services/board.service'
 import { ListService } from '../services/list.service'
 import { List } from '@app/list/list.interface';
 
-
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -13,8 +11,8 @@ import { List } from '@app/list/list.interface';
 })
 export class BoardComponent implements OnInit {
   private sub: any;
-  lists: List[];
   board: Object;
+  lists: List[];
   listName: string;
   form = true;
 
@@ -28,15 +26,14 @@ export class BoardComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.boardService.read(params['id'])
         .subscribe((data: any) => {
-          console.log(data)
           this.board = data
           this.lists = data["lists"];
         });
     });
   }
 
-  addList = (boardId: string, name: string) => {
-    this.listService.createById(boardId, "board", { name })
+  addList = (parentId: string, name: string) => {
+    this.listService.createByParentId(parentId, "board", { name })
       .subscribe((data: any) => {
         this.lists = [...this.lists, data]
         this.toggleForm();
@@ -58,5 +55,4 @@ export class BoardComponent implements OnInit {
   toggleForm = () => {
     this.form = !this.form;
   }
-
 }

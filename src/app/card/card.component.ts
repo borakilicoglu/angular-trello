@@ -12,12 +12,9 @@ export class CardComponent implements OnInit {
   @Input() card: Object;
   isReadOnly = true;
 
-  constructor(
-    private cardService: CardService,
-  ) { }
+  constructor(private cardService: CardService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   editCard() {
     this.searchElement.nativeElement.focus();
@@ -25,8 +22,8 @@ export class CardComponent implements OnInit {
   }
 
   updateCard(id: string, name: string) {
-    this.cardService.updateCard(id, name)
-      .subscribe(data => {
+    this.cardService.update(id, { name })
+      .subscribe((data: any) => {
         this.isReadOnly = true;
       });
   }

@@ -16,10 +16,7 @@ export class ListComponent implements OnInit {
   cardName: string;
   form = false;
 
-  constructor(
-    private listService: ListService,
-    private cardService: CardService,
-  ) { }
+  constructor(private listService: ListService, private cardService: CardService) { }
 
   ngOnInit() {
     this.listService.read(this.id)
@@ -29,8 +26,8 @@ export class ListComponent implements OnInit {
       });
   }
 
-  addCard = (listId: string, name: string) => {
-    this.cardService.createById(listId, 'list', { name })
+  addCard = (parentId: string, name: string) => {
+    this.cardService.createByParentId(parentId, "list", { name })
       .subscribe((data: any) => {
         this.cards = [...this.cards, data]
         this.toggleForm();
@@ -39,7 +36,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteCard = (id: string) => {
-    this.cardService.deleteCard(id)
+    this.cardService.delete(id)
       .subscribe(data => {
         this.cards.splice(this.cards.findIndex(x => x.id === id), 1);
       });
@@ -48,5 +45,4 @@ export class ListComponent implements OnInit {
   toggleForm = () => {
     this.form = !this.form;
   }
-
 }
