@@ -16,7 +16,7 @@
     "env": "ngx-scripts env npm_package_version",
     "prettier": "prettier --write \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
-    "postinstall": "npm run prettier -s && ng build --aot --prod",
+    "postinstall": "npm run prettier -s",
     "generate": "ng generate"
   },
   "dependencies": {
@@ -35,8 +35,6 @@
     "@ngx-translate/core": "^11.0.1",
     "bootstrap": "^4.1.1",
     "core-js": "^2.6.3",
-    "express": "^4.17.1",
-    "path": "^0.12.7",
     "rxjs": "^6.4.0",
     "zone.js": "~0.8.26"
   },
@@ -93,9 +91,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  },
-  "engines": {
-    "node": "~12.3.1",
-    "npm": "~6.9.0"
   }
 }

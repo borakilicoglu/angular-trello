@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { Credentials, CredentialsService } from './credentials.service';
+import { environment } from '@env/environment';
 
 export interface LoginContext {
   username: string;
@@ -25,7 +26,7 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-    return this.http.post<any>(`http://localhost:4000/auth/login`, { ...context })
+    return this.http.post<any>(`${environment.serverUrl}/auth/login`, { ...context })
       .pipe(map(data => {
         this.credentialsService.setCredentials(data, context.remember);
         return data;
@@ -49,8 +50,8 @@ export class AuthenticationService {
     return of(true);
   }
 
-  getAuthorizationToken(): string {
+  getAuthorizationToken(): any {
     const credentials = JSON.parse(localStorage.getItem('credentials'));
-    return credentials.token;
+    return credentials && credentials.token;
   }
 }

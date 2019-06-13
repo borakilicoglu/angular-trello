@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CardService } from '../services/card.service'
+import { Card } from '../card/card.interface';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +10,7 @@ import { CardService } from '../services/card.service'
 export class CardComponent implements OnInit {
   @Input() public deleteCard: Function;
   @ViewChild('input') searchElement: ElementRef;
-  @Input() card: Object;
+  @Input() card: Card;
   isReadOnly = true;
 
   constructor(private cardService: CardService) { }

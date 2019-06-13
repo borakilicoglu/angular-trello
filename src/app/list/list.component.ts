@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ListService } from '../services/list.service'
 import { CardService } from '../services/card.service'
 import { Card } from '../card/card.interface';
+import { List } from '../list/list.interface';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +13,7 @@ export class ListComponent implements OnInit {
   @Input() public deleteList: Function;
   @Input() id: string;
   cards: Card[];
-  list: Object;
+  list: List;
   cardName: string;
   form = false;
 
