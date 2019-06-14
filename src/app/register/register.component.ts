@@ -33,10 +33,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() { }
 
-  login() {
+  register() {
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.registerForm.value);
-    login$
+    const register$ = this.authenticationService.register(this.registerForm.value);
+    register$
       .pipe(
         finalize(() => {
           this.registerForm.markAsPristine();

@@ -1,5 +1,5 @@
-<div class="login-container bg-light">
-  <div class="login-box">
+<div class="register-container bg-light">
+  <div class="register-box">
     <h1 translate>APP_NAME</h1>
     <div>
       <h6 class="d-inline-block">v{{ version }}</h6>
@@ -20,7 +20,7 @@
           <h4 class="card-title text-center">
             <i class="far fa-3x fa-user-circle text-muted"></i>
           </h4>
-          <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+          <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
             <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
               Username or password incorrect.
             </div>
@@ -35,7 +35,7 @@
                 />
                 <span hidden translate>Username</span>
                 <small
-                  [hidden]="loginForm.controls.username.valid || loginForm.controls.username.untouched"
+                  [hidden]="registerForm.controls.username.valid || registerForm.controls.username.untouched"
                   class="text-danger"
                   translate
                 >
@@ -53,7 +53,7 @@
                 />
                 <span hidden translate>Password</span>
                 <small
-                  [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
+                  [hidden]="registerForm.controls.password.valid || registerForm.controls.password.untouched"
                   class="text-danger"
                   translate
                 >
@@ -67,10 +67,11 @@
                 </label>
               </div>
             </div>
-            <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
+            <button class="btn btn-primary w-100" type="submit" [disabled]="registerForm.invalid || isLoading">
               <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
-              <span translate>Login</span>
+              <span translate>Register</span>
             </button>
+            <button type="button" class="btn btn-link float-right" [routerLink]="['/login']">Login</button>
           </form>
         </div>
       </div>

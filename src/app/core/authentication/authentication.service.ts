@@ -12,6 +12,12 @@ export interface LoginContext {
   remember?: boolean;
 }
 
+export interface RegisterContext {
+  username: string;
+  password: string;
+  remember?: boolean;
+}
+
 /**
  * Provides a base for authentication workflow.
  * The login/logout methods should be replaced with proper implementation.
@@ -31,13 +37,19 @@ export class AuthenticationService {
         this.credentialsService.setCredentials(data, context.remember);
         return data;
       }));
-    // // Replace by proper authentication call
-    // const data = {
-    //   username: context.username,
-    //   token: '123456'
-    // };
+  }
 
-    // return of(data);
+  /**
+   * Register the user.
+   * @param context The registewr parameters.
+   * @return The user credentials.
+   */
+  register(context: RegisterContext): Observable<Credentials> {
+    return this.http.post<any>(`${environment.serverUrl}/auth/register`, { ...context })
+      .pipe(map(data => {
+        this.credentialsService.setCredentials(data, context.remember);
+        return data;
+      }));
   }
 
   /**
