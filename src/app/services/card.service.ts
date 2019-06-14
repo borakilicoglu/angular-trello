@@ -4,7 +4,7 @@ import { Card } from '@app/card/card.interface';
 import { BaseService } from './base.service';
 
 @Injectable()
-export class CardService extends BaseService<Card, string> {
+export class CardService extends BaseService<Card> {
   constructor(protected _http: HttpClient) {
     super(_http, "cards");
   }

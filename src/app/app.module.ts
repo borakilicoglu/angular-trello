@@ -14,6 +14,7 @@ import { BoardModule } from './board/board.module';
 import { ShellModule } from './shell/shell.module';
 import { AboutModule } from './about/about.module';
 import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 import { ListModule } from './list/list.module';
 import { CardModule } from './card/card.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { AppRoutingModule } from './app-routing.module';
     BoardModule,
     AboutModule,
     LoginModule,
+    RegisterModule,
     CardModule,
     ListModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route

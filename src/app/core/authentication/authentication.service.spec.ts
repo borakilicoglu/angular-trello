@@ -3,6 +3,7 @@ import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { AuthenticationService } from './authentication.service';
 import { CredentialsService, Credentials } from './credentials.service';
 import { MockCredentialsService } from './credentials.service.mock';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AuthenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -10,6 +11,7 @@ describe('AuthenticationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       providers: [{ provide: CredentialsService, useClass: MockCredentialsService }, AuthenticationService]
     });
 

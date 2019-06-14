@@ -3,23 +3,22 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
-import { BaordsComponent } from './boards.component';
-import { QuoteService } from './quote.service';
+import { BoardsComponent } from './boards.component';
 
 describe('HomeComponent', () => {
-  let component: BaordsComponent;
-  let fixture: ComponentFixture<BaordsComponent>;
+  let component: BoardsComponent;
+  let fixture: ComponentFixture<BoardsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CoreModule, SharedModule, HttpClientTestingModule],
-      declarations: [BaordsComponent],
-      providers: [QuoteService]
+      declarations: [BoardsComponent],
+      providers: []
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaordsComponent);
+    fixture = TestBed.createComponent(BoardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
