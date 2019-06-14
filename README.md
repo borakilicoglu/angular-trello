@@ -1,6 +1,6 @@
 # angular-trello
 
-A simple demo app like Trello using Angular
+:pizza:Trello clone with Angular.
 
 ## Setup
 
