@@ -10,7 +10,7 @@ import { Board } from '@app/board/board.interface';
   styleUrls: ['./boards.component.scss']
 })
 export class BoardsComponent implements OnInit {
-  boards: Board[];
+  boards: Board[] = [];
   boardName: string;
   form = true;
 
@@ -23,11 +23,14 @@ export class BoardsComponent implements OnInit {
     this.boardService.findAll().subscribe(data => {
       this.boards = data;
     });
+    this.boardService.listen().subscribe((data: any) => {
+      this.boards = [...this.boards, data];
+    });
   }
 
   addBoard = (name: string) => {
     this.boardService.create({ name }).subscribe(data => {
-      this.boards = [...this.boards, data]
+      // this.boards = [...this.boards, data]
       this.toggleForm();
       this.boardName = "";
     });

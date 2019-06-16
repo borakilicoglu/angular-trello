@@ -1,10 +1,13 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BaseOperations } from './base-operations.interface';
 import { environment } from '@env/environment';
+import * as io from 'socket.io-client';
 
 export abstract class BaseService<T> implements BaseOperations<T> {
   private serverUrl: string = environment.serverUrl
+  private url = 'http://localhost:4001';
+  private socket = io(this.url);
   constructor(protected _http: HttpClient, protected _collection: string) { }
 
   create(t: T): Observable<T> {
@@ -29,5 +32,13 @@ export abstract class BaseService<T> implements BaseOperations<T> {
 
   findAll(): Observable<T[]> {
     return this._http.get<T[]>(this.serverUrl + '/' + this._collection);
+  }
+
+  listen() {
+    return Observable.create((observer: any) => {
+      this.socket.on('newBoard', (board: any) => {
+        observer.next(board);
+      });
+    });
   }
 }

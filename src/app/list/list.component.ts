@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   list: List;
   cardName: string;
   form = false;
+  edit = false;
 
   constructor(private listService: ListService, private cardService: CardService) { }
 
@@ -25,6 +26,16 @@ export class ListComponent implements OnInit {
         this.list = list;
         this.cards = list["cards"];
       });
+  }
+
+  updateList = (id: string, name: string, ) => {
+    this.listService.update(id, { name }).subscribe((data: any) => {
+      this.editName();
+    });
+  }
+
+  editName = () => {
+    this.edit = !this.edit;
   }
 
   addCard = (parentId: string, name: string) => {

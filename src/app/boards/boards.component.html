@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div *ngFor="let board of boards; let i = index" class="col-md-3 col-sm-12">
-      <div class="jumbotron">
+      <div class="jumbotron shadow">
         <div class="d-flex">
           <div class="flex-fill align-self-center">
             <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>

@@ -1,7 +1,15 @@
-<div class="jumbotron shadow">
+<div class="jumbotron shadow" *ngIf="list">
   <div class="d-flex">
     <div class="flex-fill align-self-center">
-      <p class="mb-0 font-weight-bold" *ngIf="list">{{ list.name }}</p>
+      <p class="mb-0 pl-2 ml-1 font-weight-bold" (click)="editName()" *ngIf="!edit">{{ list.name }}</p>
+      <div class="form-group mb-2" *ngIf="edit">
+        <input
+          type="text"
+          class="form-control border-0"
+          [(ngModel)]="list.name"
+          (keyup.enter)="updateList(list.id, list.name)"
+        />
+      </div>
     </div>
     <div class="flex-fill">
       <button type="button" class="btn btn-default float-right" (click)="deleteList(list.id)">

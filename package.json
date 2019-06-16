@@ -33,9 +33,11 @@
     "@fortawesome/fontawesome-free": "^5.1.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.4",
     "@ngx-translate/core": "^11.0.1",
+    "@types/socket.io-client": "^1.4.32",
     "bootstrap": "^4.1.1",
     "core-js": "^2.6.3",
     "rxjs": "^6.4.0",
+    "socket.io-client": "^2.2.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
