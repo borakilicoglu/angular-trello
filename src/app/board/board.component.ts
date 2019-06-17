@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../services/board.service'
 import { ListService } from '../services/list.service'
@@ -18,11 +18,21 @@ export class BoardComponent implements OnInit {
   form = true;
   edit = false;
 
+  @ViewChild('input') input: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
-    private listService: ListService
-  ) { }
+    private listService: ListService,
+    private renderer: Renderer2
+  ) {
+    this.renderer.listen('window', 'click', (e: Event) => {
+      console.log(e.target['classList'])
+      if (e.target !== this.input.nativeElement && !e.target['classList'].contains('btn-danger')) {
+        this.edit = false;
+      }
+    });
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -34,9 +44,10 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  editName = (name: string, id: string) => {
-    this.edit = !false;
-    console.log(name)
+  updateBoard = (id: string, name: string) => {
+    this.boardService.update(id, { name }).subscribe((data: any) => {
+      this.editName();
+    });
   }
 
   addList = (parentId: string, name: string) => {
@@ -61,5 +72,9 @@ export class BoardComponent implements OnInit {
 
   toggleForm = () => {
     this.form = !this.form;
+  }
+
+  editName = () => {
+    this.edit = !this.edit;
   }
 }

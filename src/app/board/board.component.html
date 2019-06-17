@@ -1,16 +1,20 @@
 <div class="container-fluid" *ngIf="board">
-  <div class="row sub-header">
+  <div class="row sub-header pt-2 pb-2">
     <div class="col-12">
-      <h6 class="mb-2 mt-2 text-light" (click)="editName(board.name)" *ngIf="!edit">{{ board.name }}</h6>
-      <div class="form-inline">
+      <div class="form-inline float-left mr-1">
         <input
-          class="form-control mt-1 mb-1 form-control-sm border-0"
+          #input
+          class="form-control form-control-sm border-0"
           type="text"
-          *ngIf="edit"
+          [hidden]="!edit"
           [(ngModel)]="board.name"
-          (keyup.enter)="updateList(board.id, board.name)"
+          (keyup.enter)="updateBoard(board.id, board.name)"
         />
       </div>
+      <button type="button" class="btn-sm btn-danger" (click)="editName(board.name)" [hidden]="edit">
+        {{ board.name }}
+      </button>
+      <button type="button" class="btn-sm btn-danger"><i class="fa fa-star text-white"></i></button>
     </div>
   </div>
   <div class="row">

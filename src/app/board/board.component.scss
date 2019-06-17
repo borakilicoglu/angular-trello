@@ -3,6 +3,12 @@
 .sub-header {
   background: #e4606d;
   margin-bottom: $spacer;
+  .hidden {
+    display: none !important;
+  }
+  h6 {
+    cursor: pointer;
+  }
 }
 
 .jumbotron {
