@@ -16,6 +16,7 @@ export class BoardComponent implements OnInit {
   lists: List[];
   listName: string;
   form = true;
+  edit = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,11 @@ export class BoardComponent implements OnInit {
           this.lists = data["lists"];
         });
     });
+  }
+
+  editName = (name: string, id: string) => {
+    this.edit = !false;
+    console.log(name)
   }
 
   addList = (parentId: string, name: string) => {
