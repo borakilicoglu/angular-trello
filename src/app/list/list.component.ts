@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
 
   constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) {
     this.renderer.listen('window', 'click', (e: Event) => {
-      if (e.target !== this.input.nativeElement && !e.target['classList'].contains('btn-danger')) {
+      if (e.target !== this.input.nativeElement && !e.target['classList'].contains('list-title')) {
         this.edit = false;
       }
     });

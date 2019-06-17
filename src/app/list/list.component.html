@@ -1,7 +1,7 @@
 <div class="jumbotron shadow" *ngIf="list">
   <div class="d-flex">
     <div class="flex-grow-1 align-self-center">
-      <p class="mb-0 pl-2 ml-1 font-weight-bold" (click)="editName()" *ngIf="!edit">{{ list.name }}</p>
+      <p class="mb-0 pl-2 ml-1 font-weight-bold list-title" (click)="editName()" *ngIf="!edit">{{ list.name }}</p>
       <div class="form-group mb-2" *ngIf="edit">
         <input
           #input
