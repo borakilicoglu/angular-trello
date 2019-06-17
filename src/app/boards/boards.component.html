@@ -1,17 +1,38 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <h4>Recently Viewed</h4>
+      <h5 class="mb-0">Recently Viewed</h5>
     </div>
   </div>
   <div class="row">
     <div *ngFor="let board of boards; let i = index" class="col-md-3 col-sm-12">
       <div class="jumbotron shadow">
         <div class="d-flex">
-          <div class="flex-fill align-self-center">
+          <div class="flex-grow-1 align-self-center">
             <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
           </div>
-          <div class="flex-fill">
+          <div>
+            <button type="button" class="btn btn-default float-right" (click)="deleteBoard(board.id)">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h5 class="mb-0">Personal Boards</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let board of boards; let i = index" class="col-md-3 col-sm-12">
+      <div class="jumbotron shadow">
+        <div class="d-flex">
+          <div class="flex-grow-1 align-self-center">
+            <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+          </div>
+          <div>
             <button type="button" class="btn btn-default float-right" (click)="deleteBoard(board.id)">
               <i class="fas fa-ellipsis-h"></i>
             </button>
