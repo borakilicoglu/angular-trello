@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { ListService } from '../services/list.service'
 import { CardService } from '../services/card.service'
 import { Card } from '../card/card.interface';
@@ -18,7 +18,15 @@ export class ListComponent implements OnInit {
   form = false;
   edit = false;
 
-  constructor(private listService: ListService, private cardService: CardService) { }
+  @ViewChild('input') input: ElementRef;
+
+  constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) {
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (e.target !== this.input.nativeElement && !e.target['classList'].contains('btn-danger')) {
+        this.edit = false;
+      }
+    });
+  }
 
   ngOnInit() {
     this.listService.read(this.id)

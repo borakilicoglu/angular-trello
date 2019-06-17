@@ -27,7 +27,6 @@ export class BoardComponent implements OnInit {
     private renderer: Renderer2
   ) {
     this.renderer.listen('window', 'click', (e: Event) => {
-      console.log(e.target['classList'])
       if (e.target !== this.input.nativeElement && !e.target['classList'].contains('btn-danger')) {
         this.edit = false;
       }

@@ -4,6 +4,7 @@
       <p class="mb-0 pl-2 ml-1 font-weight-bold" (click)="editName()" *ngIf="!edit">{{ list.name }}</p>
       <div class="form-group mb-2" *ngIf="edit">
         <input
+          #input
           type="text"
           class="form-control border-0"
           [(ngModel)]="list.name"
