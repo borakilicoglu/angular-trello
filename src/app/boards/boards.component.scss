@@ -11,8 +11,11 @@ q {
 }
 
 .jumbotron {
+  background-color: red;
+  background-image: url("../../assets/pattern.png");
   // padding: 0.5rem 0.5rem !important;
-  padding: 2rem 0.5rem;
+  min-height: 100px;
+  padding: 0.5rem 0.5rem;
   .btn-default:hover {
     background-color: rgba(9, 30, 66, 0.13);
   }
