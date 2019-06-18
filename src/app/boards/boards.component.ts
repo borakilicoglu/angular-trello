@@ -30,7 +30,7 @@ export class BoardsComponent implements OnInit {
 
   addBoard = (name: string) => {
     this.boardService.create({ name }).subscribe(data => {
-      // this.boards = [...this.boards, data]
+      this.boards = [...this.boards, data]
       this.toggleForm();
       this.boardName = "";
     });
