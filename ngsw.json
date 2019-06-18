@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1560790911776,
+  "timestamp": 1560881639586,
   "index": "https://borakilicoglu.github.io/angular-trello/index.html",
   "assetGroups": [
     {
@@ -10,7 +10,7 @@
       "urls": [
         "https://borakilicoglu.github.io/angular-trello/favicon.ico",
         "https://borakilicoglu.github.io/angular-trello/index.html",
-        "https://borakilicoglu.github.io/angular-trello/main.7e9b96799669b6fa1a9d.js",
+        "https://borakilicoglu.github.io/angular-trello/main.83cda3fc5ea60ec0dfb7.js",
         "https://borakilicoglu.github.io/angular-trello/polyfills.cb8dc42985a5c3a6c907.js",
         "https://borakilicoglu.github.io/angular-trello/runtime.26209474bfa8dc87a77c.js",
         "https://borakilicoglu.github.io/angular-trello/styles.d6b0a34086a8b6420cb2.css"
@@ -33,8 +33,8 @@
     "https://borakilicoglu.github.io/angular-trello/assets/angular-trello.png": "a6185054815801e1723a229bb0a3342a54bd0e1d",
     "https://borakilicoglu.github.io/angular-trello/assets/pattern.png": "48863842f7f119214d78b45245ab09f49ba0c837",
     "https://borakilicoglu.github.io/angular-trello/favicon.ico": "51e6f90064eea7a1b24c9ae68d27b542bdbea4d7",
-    "https://borakilicoglu.github.io/angular-trello/index.html": "8a692665e3e825a52191c74946d16987c8229d30",
-    "https://borakilicoglu.github.io/angular-trello/main.7e9b96799669b6fa1a9d.js": "801ed81d9c297fd6f17c71c3b8345ecf5e0f118b",
+    "https://borakilicoglu.github.io/angular-trello/index.html": "f344a2a95fe748a12fbb2aebfc5de8e2622538cf",
+    "https://borakilicoglu.github.io/angular-trello/main.83cda3fc5ea60ec0dfb7.js": "6d0871ecf5aa82895d570bfe6449110577eab675",
     "https://borakilicoglu.github.io/angular-trello/polyfills.cb8dc42985a5c3a6c907.js": "da124d9ac33a2ff2da15d0ab11273e93ddd40a79",
     "https://borakilicoglu.github.io/angular-trello/runtime.26209474bfa8dc87a77c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "https://borakilicoglu.github.io/angular-trello/styles.d6b0a34086a8b6420cb2.css": "d80a055e261c8ebbf2b2ec418956dc7cf92f214c"
