@@ -1,0 +1,21 @@
+<button class="btn btn-secondary btn-block text-left mb-2" *ngIf="show" (click)="toggle()" type="button">
+  <i class="fas fa-plus"></i> Add another {{ this.parent }}
+</button>
+<div class="jumbotron" *ngIf="!show">
+  <form>
+    <div class="form-group mb-2">
+      <input
+        type="text"
+        #input
+        class="form-control p-2 border-0"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Enter a title for this board…"
+      />
+    </div>
+    <button type="button" class="btn btn-success" (click)="add(name)">
+      Add Board
+    </button>
+    <button class="btn btn-danger float-right" (click)="toggle()"><i class="fa fa-times"></i></button>
+  </form>
+</div>

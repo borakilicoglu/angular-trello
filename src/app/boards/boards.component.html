@@ -12,7 +12,7 @@
             <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
           </div>
           <div>
-            <button type="button" class="btn btn-default float-right" (click)="deleteBoard(board.id)">
+            <button type="button" class="btn btn-default float-right" (click)="delete(board.id)">
               <i class="fas fa-ellipsis-h"></i>
             </button>
           </div>
@@ -33,7 +33,7 @@
             <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
           </div>
           <div>
-            <button type="button" class="btn btn-default float-right" (click)="deleteBoard(board.id)">
+            <button type="button" class="btn btn-default float-right" (click)="delete(board.id)">
               <i class="fas fa-ellipsis-h"></i>
             </button>
           </div>
@@ -41,27 +41,7 @@
       </div>
     </div>
     <div class="col-md-3 col-sm-12">
-      <button class="btn btn-secondary btn-block text-left mb-2" *ngIf="form" (click)="toggleForm()" type="button">
-        <i class="fas fa-plus"></i> Add another board
-      </button>
-      <div class="jumbotron" *ngIf="!form">
-        <form>
-          <div class="form-group mb-2">
-            <input
-              type="text"
-              #input
-              class="form-control p-2 border-0"
-              [(ngModel)]="boardName"
-              name="boardName"
-              placeholder="Enter a title for this board…"
-            />
-          </div>
-          <button type="button" class="btn btn-success" (click)="addBoard(boardName)">
-            Add Board
-          </button>
-          <button class="btn btn-danger float-right" (click)="toggleForm()"><i class="fa fa-times"></i></button>
-        </form>
-      </div>
+      <app-add parent="board" [create]="create"></app-add>
     </div>
   </div>
 </div>
