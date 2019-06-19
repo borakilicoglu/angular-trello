@@ -7,23 +7,23 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
   @Input() create: Function;
-  @Input() parent: string;
+  @Input() name: string;
+  @Input() id: string;
   show = true
-  name: string
+  title: string
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  add = (name: string) => {
-    this.create(name);
+  add = (title: string, id?: string) => {
+    this.create(title, id);
+    this.title = "";
     this.toggle();
-    this.name = "";
   }
 
   toggle = () => {
     this.show = !this.show;
   }
-
 }

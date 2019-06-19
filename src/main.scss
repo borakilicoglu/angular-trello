@@ -19,3 +19,14 @@
 body {
   background-color: #f4f5f7;
 }
+
+.btn {
+  text-transform: capitalize !important;
+}
+
+.btn:focus,
+.btn:active,
+input {
+  outline: none !important;
+  box-shadow: none !important;
+}

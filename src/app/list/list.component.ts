@@ -10,17 +10,21 @@ import { List } from '../list/list.interface';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  @Input() public deleteList: Function;
+  @Input() public delete: Function;
   @Input() id: string;
   cards: Card[];
   list: List;
-  cardName: string;
-  form = false;
-  edit = false;
+  edit: boolean = false
 
   @ViewChild('input') input: ElementRef;
 
-  constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) {
+  constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) { }
+
+  ngOnInit() {
+    this.listService.read(this.id).subscribe(list => {
+      this.list = list;
+      this.cards = list["cards"];
+    });
     this.renderer.listen('window', 'click', (e: Event) => {
       if (e.target !== this.input.nativeElement && !e.target['classList'].contains('list-title')) {
         this.edit = false;
@@ -28,30 +32,18 @@ export class ListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.listService.read(this.id)
-      .subscribe(list => {
-        this.list = list;
-        this.cards = list["cards"];
-      });
-  }
-
-  updateList = (id: string, name: string, ) => {
+  updateList = (id: string, name: string, event: any) => {
+    event.srcElement.blur();
+    event.preventDefault();
     this.listService.update(id, { name }).subscribe((data: any) => {
-      this.editName();
+      this.edit = !this.edit;
     });
   }
 
-  editName = () => {
-    this.edit = !this.edit;
-  }
-
-  addCard = (parentId: string, name: string) => {
-    this.cardService.createByParentId(parentId, "list", { name })
+  create = (name: string, id: string) => {
+    this.cardService.createByParentId(id, "list", { name })
       .subscribe((data: any) => {
         this.cards = [...this.cards, data]
-        this.toggleForm();
-        this.cardName = "";
       });
   }
 
@@ -60,9 +52,5 @@ export class ListComponent implements OnInit {
       .subscribe(data => {
         this.cards.splice(this.cards.findIndex(x => x.id === id), 1);
       });
-  }
-
-  toggleForm = () => {
-    this.form = !this.form;
   }
 }

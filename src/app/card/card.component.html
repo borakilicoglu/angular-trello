@@ -1,13 +1,6 @@
 <div class="card border-0">
   <div class="input-group">
-    <input
-      type="text"
-      class="form-control border-0"
-      #input
-      [(ngModel)]="card.name"
-      [readonly]="isReadOnly"
-      [style.height]="isReadOnly ? '38px' : '100px'"
-    />
+    <input type="text" class="form-control border-0" #input [(ngModel)]="card.name" [readonly]="isReadOnly" />
     <div class="input-group-prepend" (click)="editCard()">
       <div class="input-group-text">
         <i class="far fa-edit" [hidden]="!isReadOnly"></i>

@@ -14,51 +14,49 @@ export class BoardComponent implements OnInit {
   private sub: any;
   board: Board;
   lists: List[];
-  listName: string;
-  form = true;
-  edit = false;
+  edit: boolean = false;
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('boardName') boardName: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
     private listService: ListService,
     private renderer: Renderer2
-  ) {
+  ) { }
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.boardService.read(params['id']).subscribe((data: Board) => {
+        this.board = data
+        this.lists = data["lists"];
+      });
+    });
+  }
+
+  ngAfterViewInit() {
+    console.log("here")
     this.renderer.listen('window', 'click', (e: Event) => {
-      if (e.target !== this.input.nativeElement && !e.target['classList'].contains('btn-danger')) {
+      if (e.target !== this.boardName.nativeElement && !e.target['classList'].contains('board-name')) {
         this.edit = false;
       }
     });
   }
 
-  ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.boardService.read(params['id'])
-        .subscribe((data: Board) => {
-          this.board = data
-          this.lists = data["lists"];
-        });
-    });
-  }
-
   updateBoard = (id: string, name: string) => {
     this.boardService.update(id, { name }).subscribe((data: any) => {
-      this.editName();
+      this.edit = false;
     });
   }
 
-  addList = (parentId: string, name: string) => {
-    this.listService.createByParentId(parentId, "board", { name })
+  create = (name: string, id: string) => {
+    this.listService.createByParentId(id, "board", { name })
       .subscribe((data: any) => {
         this.lists = [...this.lists, data]
-        this.toggleForm();
-        this.listName = "";
       });
   }
 
-  deleteList = (id: string) => {
+  delete = (id: string) => {
     this.listService.delete(id)
       .subscribe(data => {
         this.lists.splice(this.lists.findIndex(x => x.id === id), 1);
@@ -67,13 +65,5 @@ export class BoardComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  toggleForm = () => {
-    this.form = !this.form;
-  }
-
-  editName = () => {
-    this.edit = !this.edit;
   }
 }

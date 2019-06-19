@@ -3,15 +3,14 @@
     <div class="col-12">
       <div class="form-inline float-left mr-1">
         <input
-          #input
-          class="form-control form-control-sm border-0"
+          #boardName
+          class="form-control form-control-sm border-0 board-name"
           type="text"
-          [hidden]="!edit"
           [(ngModel)]="board.name"
           (keyup.enter)="updateBoard(board.id, board.name)"
         />
       </div>
-      <button type="button" class="btn-sm btn-danger" (click)="editName(board.name)" [hidden]="edit">
+      <button type="button" class="btn-sm btn-danger" (click)="edit = !edit" [hidden]="edit">
         {{ board.name }}
       </button>
       <button type="button" class="btn-sm btn-danger"><i class="far fa-star text-white"></i></button>
@@ -19,28 +18,11 @@
   </div>
   <div class="row">
     <div *ngFor="let list of lists; let i = index" class="col-md-3 col-sm-12">
-      <app-list [id]="list.id" [deleteList]="deleteList"></app-list>
+      <app-list [id]="list.id" [delete]="delete"></app-list>
     </div>
     <div class="col-md-3 col-sm-12">
-      <div class="js-add-list list-wrapper mod-add is-idle">
-        <button class="btn btn-secondary btn-block text-left mb-2" (click)="toggleForm()" *ngIf="form" type="button">
-          <i class="fas fa-plus"></i> Add another list
-        </button>
-        <div class="jumbotron" *ngIf="!form">
-          <input
-            class="form-control mb-2 p-2 border-0 ng-untouched ng-pristine ng-valid"
-            name="listName"
-            [(ngModel)]="listName"
-            placeholder="Enter a title for this list…"
-            type="text"
-          />
-          <button type="button" class="btn btn-success" (click)="addList(board.id, listName)">
-            Add List
-          </button>
-          <button class="btn btn-danger float-right" (click)="toggleForm()">
-            <i class="fa fa-times"></i>
-          </button>
-        </div>
+      <div class="jumbotron shadow">
+        <app-add name="list" [id]="board.id" [create]="create"></app-add>
       </div>
     </div>
   </div>
