@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   list: List;
   edit: boolean = false
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('listName') listName: ElementRef;
 
   constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) { }
 
@@ -25,18 +25,21 @@ export class ListComponent implements OnInit {
       this.list = list;
       this.cards = list["cards"];
     });
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if (e.target !== this.input.nativeElement && !e.target['classList'].contains('list-title')) {
-        this.edit = false;
-      }
-    });
   }
 
-  updateList = (id: string, name: string, event: any) => {
-    event.srcElement.blur();
-    event.preventDefault();
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.listen('window', 'click', (e: Event) => {
+        if (e.target !== this.listName.nativeElement && !e.target['classList'].contains('list-title')) {
+          this.updateList(this.list.id, this.list.name);
+        }
+      });
+    }, 15);
+  }
+
+  updateList = (id: string, name: string) => {
     this.listService.update(id, { name }).subscribe((data: any) => {
-      this.edit = !this.edit;
+      this.edit = false;
     });
   }
 
