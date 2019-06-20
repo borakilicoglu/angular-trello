@@ -14,7 +14,7 @@
       <button type="button" class="btn-sm btn-danger board-name" (click)="edit = !edit" [hidden]="edit">
         {{ board.name }}
       </button>
-      <button type="button" class="btn-sm btn-danger" (click)="favorite()">
+      <button type="button" class="btn-sm btn-danger" (click)="favorite(board.id)">
         <i class="far fa-star text-white"></i>
       </button>
     </div>
