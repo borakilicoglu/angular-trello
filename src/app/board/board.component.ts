@@ -35,12 +35,14 @@ export class BoardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log("here")
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if (e.target !== this.boardName.nativeElement && !e.target['classList'].contains('board-name')) {
-        this.edit = false;
-      }
-    });
+    setTimeout(() => {
+      this.renderer.listen('window', 'click', (e: Event) => {
+        console.log(e.target)
+        if (e.target !== this.boardName.nativeElement && !e.target['classList'].contains('board-name')) {
+          this.edit = false;
+        }
+      });
+    }, 15);
   }
 
   updateBoard = (id: string, name: string) => {

@@ -3,14 +3,15 @@
     <div class="col-12">
       <div class="form-inline float-left mr-1">
         <input
+          [hidden]="!edit"
           #boardName
-          class="form-control form-control-sm border-0 board-name"
+          class="form-control form-control-sm border-0"
           type="text"
           [(ngModel)]="board.name"
           (keyup.enter)="updateBoard(board.id, board.name)"
         />
       </div>
-      <button type="button" class="btn-sm btn-danger" (click)="edit = !edit" [hidden]="edit">
+      <button type="button" class="btn-sm btn-danger board-name" (click)="edit = !edit" [hidden]="edit">
         {{ board.name }}
       </button>
       <button type="button" class="btn-sm btn-danger"><i class="far fa-star text-white"></i></button>
