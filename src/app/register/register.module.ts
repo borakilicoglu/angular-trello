@@ -11,4 +11,4 @@ import { RegisterComponent } from './register.component';
   imports: [CommonModule, ReactiveFormsModule, TranslateModule, NgbModule, RegisterRoutingModule],
   declarations: [RegisterComponent]
 })
-export class RegisterModule { }
+export class RegisterModule {}

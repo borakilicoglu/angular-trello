@@ -29,7 +29,7 @@ import { AuthInterceptor } from './http/auth.interceptor';
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy
     },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 export class CoreModule {

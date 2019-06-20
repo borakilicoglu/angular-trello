@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { ListService } from '../services/list.service'
-import { CardService } from '../services/card.service'
+import { ListService } from '../services/list.service';
+import { CardService } from '../services/card.service';
 import { Card } from '../card/card.interface';
 import { List } from '../list/list.interface';
 
@@ -14,16 +14,16 @@ export class ListComponent implements OnInit {
   @Input() id: string;
   cards: Card[];
   list: List;
-  edit: boolean = false
+  edit: boolean = false;
 
   @ViewChild('listName') listName: ElementRef;
 
-  constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) { }
+  constructor(private listService: ListService, private cardService: CardService, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.listService.read(this.id).subscribe(list => {
       this.list = list;
-      this.cards = list["cards"];
+      this.cards = list['cards'];
     });
   }
 
@@ -41,19 +41,17 @@ export class ListComponent implements OnInit {
     this.listService.update(id, { name }).subscribe((data: any) => {
       this.edit = false;
     });
-  }
+  };
 
   create = (name: string, id: string) => {
-    this.cardService.createByParentId(id, "list", { name })
-      .subscribe((data: any) => {
-        this.cards = [...this.cards, data]
-      });
-  }
+    this.cardService.createByParentId(id, 'list', { name }).subscribe((data: any) => {
+      this.cards = [...this.cards, data];
+    });
+  };
 
   deleteCard = (id: string) => {
-    this.cardService.delete(id)
-      .subscribe(data => {
-        this.cards.splice(this.cards.findIndex(x => x.id === id), 1);
-      });
-  }
+    this.cardService.delete(id).subscribe(data => {
+      this.cards.splice(this.cards.findIndex(x => x.id === id), 1);
+    });
+  };
 }

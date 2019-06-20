@@ -9,21 +9,20 @@ export class AddComponent implements OnInit {
   @Input() create: Function;
   @Input() name: string;
   @Input() id: string;
-  show = true
-  title: string
+  show = true;
+  title: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   add = (title: string, id?: string) => {
     this.create(title, id);
-    this.title = "";
+    this.title = '';
     this.toggle();
-  }
+  };
 
   toggle = () => {
     this.show = !this.show;
-  }
+  };
 }

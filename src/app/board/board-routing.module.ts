@@ -6,9 +6,7 @@ import { BoardComponent } from './board.component';
 import { Shell } from '@app/shell/shell.service';
 
 const routes: Routes = [
-  Shell.childRoutes([
-    { path: 'board/:id', component: BoardComponent, data: { title: extract('Board') } }
-  ])
+  Shell.childRoutes([{ path: 'board/:id', component: BoardComponent, data: { title: extract('Board') } }])
 ];
 
 @NgModule({
@@ -16,4 +14,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class BoardRoutingModule { }
+export class BoardRoutingModule {}

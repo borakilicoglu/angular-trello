@@ -17,4 +17,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class BoardsRoutingModule { }
+export class BoardsRoutingModule {}

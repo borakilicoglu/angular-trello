@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardService } from '../services/board.service'
-import { ListService } from '../services/list.service'
+import { BoardService } from '../services/board.service';
+import { ListService } from '../services/list.service';
 import { List } from '@app/list/list.interface';
 import { Board } from '@app/board/board.interface';
 
@@ -23,13 +23,13 @@ export class BoardComponent implements OnInit {
     private boardService: BoardService,
     private listService: ListService,
     private renderer: Renderer2
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.boardService.read(params['id']).subscribe((data: Board) => {
-        this.board = data
-        this.lists = data["lists"];
+        this.board = data;
+        this.lists = data['lists'];
       });
     });
   }
@@ -44,25 +44,27 @@ export class BoardComponent implements OnInit {
     }, 15);
   }
 
+  favorite = (id: string) => {
+    console.log(id);
+  };
+
   updateBoard = (id: string, name: string) => {
     this.boardService.update(id, { name }).subscribe((data: any) => {
       this.edit = false;
     });
-  }
+  };
 
   create = (name: string, id: string) => {
-    this.listService.createByParentId(id, "board", { name })
-      .subscribe((data: any) => {
-        this.lists = [...this.lists, data]
-      });
-  }
+    this.listService.createByParentId(id, 'board', { name }).subscribe((data: any) => {
+      this.lists = [...this.lists, data];
+    });
+  };
 
   delete = (id: string) => {
-    this.listService.delete(id)
-      .subscribe(data => {
-        this.lists.splice(this.lists.findIndex(x => x.id === id), 1);
-      });
-  }
+    this.listService.delete(id).subscribe(data => {
+      this.lists.splice(this.lists.findIndex(x => x.id === id), 1);
+    });
+  };
 
   ngOnDestroy() {
     this.sub.unsubscribe();

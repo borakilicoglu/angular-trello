@@ -29,9 +29,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.createForm();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 
   register() {
     this.isLoading = true;

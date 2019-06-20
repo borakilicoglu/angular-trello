@@ -10,4 +10,4 @@ import { AddComponent } from './add/add.component';
   declarations: [LoaderComponent, AddComponent],
   exports: [LoaderComponent, AddComponent]
 })
-export class SharedModule { }
+export class SharedModule {}

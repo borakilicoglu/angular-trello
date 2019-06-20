@@ -8,11 +8,10 @@ import { SharedModule } from '@app/shared';
 import { CardComponent } from './card.component';
 import { CardService } from '../services/card.service';
 
-
 @NgModule({
   imports: [CommonModule, TranslateModule, CoreModule, SharedModule, FormsModule, ReactiveFormsModule],
   declarations: [CardComponent],
   providers: [CardService],
   exports: [CardComponent]
 })
-export class CardModule { }
+export class CardModule {}

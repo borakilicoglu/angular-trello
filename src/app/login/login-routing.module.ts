@@ -11,4 +11,4 @@ const routes: Routes = [{ path: 'login', component: LoginComponent, data: { titl
   exports: [RouterModule],
   providers: []
 })
-export class LoginRoutingModule { }
+export class LoginRoutingModule {}

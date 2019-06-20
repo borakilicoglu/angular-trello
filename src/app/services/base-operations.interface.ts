@@ -1,7 +1,6 @@
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
-
 export interface BaseOperations<T> {
   create(t: T): Observable<T>;
   createByParentId(id: string, parent: string, t: T): Observable<T>;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { CardService } from '../services/card.service'
+import { CardService } from '../services/card.service';
 import { Card } from '../card/card.interface';
 
 @Component({
@@ -13,16 +13,19 @@ export class CardComponent implements OnInit {
   @Input() card: Card;
   isReadOnly = true;
 
+  constructor(private cardService: CardService, private renderer: Renderer2) {}
 
-  constructor(private cardService: CardService, private renderer: Renderer2) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     setTimeout(() => {
       this.renderer.listen('window', 'click', (e: Event) => {
-        if (e.target !== this.cardName.nativeElement && !e.target['classList'].contains('fa-times') && !e.target['classList'].contains('fa-edit')) {
-          this.updateCard(this.card.id, this.card.name)
+        if (
+          e.target !== this.cardName.nativeElement &&
+          !e.target['classList'].contains('fa-times') &&
+          !e.target['classList'].contains('fa-edit')
+        ) {
+          this.updateCard(this.card.id, this.card.name);
         }
       });
     }, 15);
@@ -34,9 +37,8 @@ export class CardComponent implements OnInit {
   }
 
   updateCard(id: string, name: string) {
-    this.cardService.update(id, { name })
-      .subscribe((data: any) => {
-        this.isReadOnly = true;
-      });
+    this.cardService.update(id, { name }).subscribe((data: any) => {
+      this.isReadOnly = true;
+    });
   }
 }

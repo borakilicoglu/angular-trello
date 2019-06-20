@@ -11,7 +11,7 @@ import { Board } from '@app/board/board.interface';
 export class BoardsComponent implements OnInit {
   boards: Board[];
 
-  constructor(private boardService: BoardService, private router: Router) { }
+  constructor(private boardService: BoardService, private router: Router) {}
 
   ngOnInit() {
     this.boardService.findAll().subscribe(data => {
@@ -24,17 +24,17 @@ export class BoardsComponent implements OnInit {
 
   create = (name: string) => {
     this.boardService.create({ name }).subscribe(data => {
-      console.log("New board generated!");
+      console.log('New board generated!');
     });
-  }
+  };
 
   delete = (id: string) => {
     this.boardService.delete(id).subscribe(data => {
       this.boards.splice(this.boards.findIndex(x => x.id === id), 1);
     });
-  }
+  };
 
   goToBoard(id: string) {
-    this.router.navigate(['/board', id]), { replaceUrl: true }
+    this.router.navigate(['/board', id]), { replaceUrl: true };
   }
 }

@@ -15,4 +15,4 @@ import { ListService } from '../services/list.service';
   providers: [ListService],
   exports: [ListComponent]
 })
-export class ListModule { }
+export class ListModule {}

@@ -24,7 +24,7 @@ export interface RegisterContext {
  */
 @Injectable()
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService, private http: HttpClient) { }
+  constructor(private credentialsService: CredentialsService, private http: HttpClient) {}
 
   /**
    * Authenticates the user.
@@ -32,11 +32,12 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-    return this.http.post<any>(`${environment.serverUrl}/auth/login`, { ...context })
-      .pipe(map(data => {
+    return this.http.post<any>(`${environment.serverUrl}/auth/login`, { ...context }).pipe(
+      map(data => {
         this.credentialsService.setCredentials(data, context.remember);
         return data;
-      }));
+      })
+    );
   }
 
   /**
@@ -45,11 +46,12 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   register(context: RegisterContext): Observable<Credentials> {
-    return this.http.post<any>(`${environment.serverUrl}/auth/register`, { ...context })
-      .pipe(map(data => {
+    return this.http.post<any>(`${environment.serverUrl}/auth/register`, { ...context }).pipe(
+      map(data => {
         this.credentialsService.setCredentials(data, context.remember);
         return data;
-      }));
+      })
+    );
   }
 
   /**

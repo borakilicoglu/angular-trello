@@ -11,4 +11,4 @@ import { HeaderComponent } from './header/header.component';
   imports: [CommonModule, TranslateModule, NgbModule, RouterModule],
   declarations: [HeaderComponent, ShellComponent]
 })
-export class ShellModule { }
+export class ShellModule {}

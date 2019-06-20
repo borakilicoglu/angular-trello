@@ -9,10 +9,17 @@ import { BoardsRoutingModule } from './boards-routing.module';
 import { BoardsComponent } from './boards.component';
 import { BoardService } from '../services/board.service';
 
-
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, BoardsRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    CoreModule,
+    SharedModule,
+    BoardsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [BoardsComponent],
   providers: [BoardService]
 })
-export class BoardsModule { }
+export class BoardsModule {}

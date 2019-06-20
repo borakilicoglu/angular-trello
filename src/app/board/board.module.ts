@@ -10,8 +10,17 @@ import { ListModule } from '../list/list.module';
 import { BoardComponent } from './board.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, ListModule, BoardRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    CoreModule,
+    SharedModule,
+    ListModule,
+    BoardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [BoardComponent],
   providers: []
 })
-export class BoardModule { }
+export class BoardModule {}
