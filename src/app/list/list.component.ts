@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.renderer.listen('window', 'click', (e: Event) => {
-        if (e.target !== this.listName.nativeElement && !e.target['classList'].contains('list-title')) {
+        if (this.edit && e.target !== this.listName.nativeElement && !e.target['classList'].contains('list-title')) {
           this.updateList(this.list.id, this.list.name);
         }
       });

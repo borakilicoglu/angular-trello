@@ -8,4 +8,6 @@ export interface BaseOperations<T> {
   update(id: string, t: T): Observable<T>;
   delete(id: string): Observable<any>;
   findAll(): Observable<T[]>;
+  addStar(id: string, t: T): Observable<any>;
+  removeStar(id: string): Observable<any>;
 }

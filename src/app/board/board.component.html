@@ -11,10 +11,10 @@
           (keyup.enter)="updateBoard(board.id, board.name)"
         />
       </div>
-      <button type="button" class="btn-sm btn-danger board-name" (click)="edit = !edit" [hidden]="edit">
+      <button type="button" class="btn btn-sm btn-danger board-name" (click)="edit = !edit" [hidden]="edit">
         {{ board.name }}
       </button>
-      <button type="button" class="btn-sm btn-danger" (click)="favorite(board.id)">
+      <button type="button" class="btn btn-sm btn-danger" (click)="star(board.id)">
         <i class="far fa-star text-white"></i>
       </button>
     </div>

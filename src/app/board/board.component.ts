@@ -37,15 +37,23 @@ export class BoardComponent implements OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.renderer.listen('window', 'click', (e: Event) => {
-        if (e.target !== this.boardName.nativeElement && !e.target['classList'].contains('board-name')) {
+        if (this.edit && e.target !== this.boardName.nativeElement && !e.target['classList'].contains('board-name')) {
           this.updateBoard(this.board.id, this.board.name);
         }
       });
     }, 15);
   }
 
-  favorite = (id: string) => {
-    console.log(id);
+  addStar = (id: string, name?: string) => {
+    this.boardService.addStar(id, { name }).subscribe((data: any) => {
+      this.edit = false;
+    });
+  };
+
+  removeStar = (id: string) => {
+    this.boardService.removeStar(id).subscribe((data: any) => {
+      this.edit = false;
+    });
   };
 
   updateBoard = (id: string, name: string) => {
