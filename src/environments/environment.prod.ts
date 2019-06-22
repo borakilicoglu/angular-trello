@@ -10,7 +10,7 @@ export const environment = {
   production: true,
   version: env.npm_package_version,
   serverUrl: 'https://nest-trello.herokuapp.com/api',
-  socketUrl: 'https://nest-trello.herokuapp.com/13185',
+  socketUrl: 'https://nest-trello.herokuapp.com',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR']
 };
