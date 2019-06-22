@@ -6,8 +6,8 @@ import * as io from 'socket.io-client';
 
 export abstract class BaseService<T> implements BaseOperations<T> {
   private serverUrl: string = environment.serverUrl;
-  private url = 'http://localhost:4001';
-  private socket = io(this.url);
+  private socketUrl: string = environment.socketUrl;
+  private socket = io(this.socketUrl);
   constructor(protected _http: HttpClient, protected _collection: string) {}
 
   create(t: T): Observable<T> {
