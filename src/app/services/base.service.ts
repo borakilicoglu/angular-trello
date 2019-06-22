@@ -8,7 +8,9 @@ export abstract class BaseService<T> implements BaseOperations<T> {
   private serverUrl: string = environment.serverUrl;
   private socketUrl: string = environment.socketUrl;
   private socket = io(this.socketUrl);
-  constructor(protected _http: HttpClient, protected _collection: string) {}
+  constructor(protected _http: HttpClient, protected _collection: string) {
+    console.log(environment.socketUrl);
+  }
 
   create(t: T): Observable<T> {
     return this._http.post<T>(this.serverUrl + '/' + this._collection, t);
