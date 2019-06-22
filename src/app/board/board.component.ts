@@ -44,14 +44,20 @@ export class BoardComponent implements OnInit {
     }, 15);
   }
 
+  starToggle = (id: string) => {
+    this.board.star ? this.removeStar(id) : this.addStar(id);
+  };
+
   addStar = (id: string, name?: string) => {
     this.boardService.addStar(id, { name }).subscribe((data: any) => {
+      this.board.star = data;
       this.edit = false;
     });
   };
 
   removeStar = (id: string) => {
     this.boardService.removeStar(id).subscribe((data: any) => {
+      this.board.star = data;
       this.edit = false;
     });
   };

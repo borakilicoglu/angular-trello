@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CardService } from '../services/card.service';
 import { Card } from '../card/card.interface';
 
@@ -9,27 +9,13 @@ import { Card } from '../card/card.interface';
 })
 export class CardComponent implements OnInit {
   @Input() public deleteCard: Function;
-  @ViewChild('cardName') cardName: ElementRef;
   @Input() card: Card;
+  @ViewChild('cardName') cardName: ElementRef;
   isReadOnly = true;
 
-  constructor(private cardService: CardService, private renderer: Renderer2) {}
+  constructor(private cardService: CardService) {}
 
   ngOnInit() {}
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.renderer.listen('window', 'click', (e: Event) => {
-        if (
-          e.target !== this.cardName.nativeElement &&
-          !e.target['classList'].contains('fa-times') &&
-          !e.target['classList'].contains('fa-edit')
-        ) {
-          this.updateCard(this.card.id, this.card.name);
-        }
-      });
-    }, 15);
-  }
 
   editCard() {
     this.cardName.nativeElement.focus();

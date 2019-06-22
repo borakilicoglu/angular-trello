@@ -1,18 +1,18 @@
 <button class="btn btn-secondary btn-block text-left" *ngIf="show" (click)="toggle()" type="button">
   <i class="fas fa-plus"></i> Add {{ this.name }}
 </button>
-<div class="form-group mb-2 mt-2" *ngIf="!show">
-  <input
-    type="text"
-    #input
-    class="form-control p-2 border-0"
-    [(ngModel)]="title"
-    name="title"
-    placeholder="Enter a title for this {{ this.name }}…"
-    (keyup.enter)="add(this.title, this.id)"
-  />
+<div class="jumbotron mb-0 border-white border" *ngIf="!show">
+  <div class="form-group mb-2">
+    <input
+      type="text"
+      #input
+      class="form-control p-2 border-0"
+      [(ngModel)]="title"
+      name="title"
+      placeholder="Enter a title for this {{ this.name }}…"
+      (keyup.enter)="add(this.title, this.id)"
+    />
+  </div>
+  <button type="button" class="btn btn-success" (click)="add(this.title, this.id)">Add {{ this.name }}</button>
+  <button class="btn btn-outline-danger float-right" (click)="toggle()"><i class="fa fa-times"></i></button>
 </div>
-<button type="button" class="btn btn-success" (click)="add(this.title, this.id)" *ngIf="!show">
-  Add {{ this.name }}
-</button>
-<button class="btn btn-danger float-right" (click)="toggle()" *ngIf="!show"><i class="fa fa-times"></i></button>

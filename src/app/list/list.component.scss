@@ -1,4 +1,7 @@
 .jumbotron {
+  .list-title {
+    cursor: pointer;
+  }
   padding: 0.5rem 0.5rem !important;
   .btn-default:hover {
     background-color: rgba(9, 30, 66, 0.13);

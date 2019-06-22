@@ -9,9 +9,11 @@
       (keyup.enter)="updateCard(card.id, card.name)"
     />
     <div class="input-group-prepend" (click)="editCard()">
-      <div class="input-group-text">
-        <i class="far fa-edit" [hidden]="!isReadOnly"></i>
-        <i class="fas fa-times" [hidden]="isReadOnly"></i>
+      <div class="input-group-text p-0">
+        <button class="btn btn-default float-right card-edit" type="button">
+          <i class="far fa-edit" [hidden]="!isReadOnly"></i>
+          <i class="fas fa-times" [hidden]="isReadOnly"></i>
+        </button>
       </div>
     </div>
   </div>

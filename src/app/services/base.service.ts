@@ -43,7 +43,6 @@ export abstract class BaseService<T> implements BaseOperations<T> {
   }
 
   addStar(id: string, t: T): Observable<T> {
-    console.log(id);
     return this._http.post<T>(this.serverUrl + '/boards/' + id + '/star', t);
   }
 
