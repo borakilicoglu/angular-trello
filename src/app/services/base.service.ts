@@ -7,7 +7,10 @@ import * as io from 'socket.io-client';
 export abstract class BaseService<T> implements BaseOperations<T> {
   private serverUrl: string = environment.serverUrl;
   private socketUrl: string = environment.socketUrl;
-  private socket = io(this.socketUrl);
+  private socket = io(this.socketUrl, {
+    rejectUnauthorized: false, // new
+    path: '/octagon/socket.io'
+  });
   constructor(protected _http: HttpClient, protected _collection: string) {
     console.log(environment.socketUrl);
   }
