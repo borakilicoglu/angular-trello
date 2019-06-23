@@ -19,7 +19,6 @@ export class BoardsComponent implements OnInit {
     });
     this.boardService.listen().subscribe((data: any) => {
       this.boards = [...this.boards, data];
-      console.log('New board added!');
     });
   }
 
