@@ -7,15 +7,11 @@ import * as io from 'socket.io-client';
 export abstract class BaseService<T> implements BaseOperations<T> {
   private serverUrl: string = environment.serverUrl;
   private socketUrl: string = environment.socketUrl;
-  private socket = io(this.socketUrl, {
-    rejectUnauthorized: false, // new
-    path: '/octagon/socket.io'
-  });
-  constructor(protected _http: HttpClient, protected _collection: string) {
-    console.log(environment.socketUrl);
-  }
+  private socket = io(this.socketUrl);
+  constructor(protected _http: HttpClient, protected _collection: string) { }
 
   create(t: T): Observable<T> {
+    console.log(environment.socketUrl);
     return this._http.post<T>(this.serverUrl + '/' + this._collection, t);
   }
 
