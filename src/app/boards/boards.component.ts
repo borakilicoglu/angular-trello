@@ -11,7 +11,7 @@ import { Board } from '@app/board/board.interface';
 export class BoardsComponent implements OnInit {
   boards: Board[];
 
-  constructor(private boardService: BoardService, private router: Router) {}
+  constructor(private boardService: BoardService, private router: Router) { }
 
   ngOnInit() {
     this.boardService.findAll().subscribe(data => {
@@ -19,6 +19,7 @@ export class BoardsComponent implements OnInit {
     });
     this.boardService.listen().subscribe((data: any) => {
       this.boards = [...this.boards, data];
+      console.log('New board added!');
     });
   }
 
