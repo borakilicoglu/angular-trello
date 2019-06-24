@@ -25,6 +25,10 @@ q {
   }
 }
 
+nav a.active {
+  text-decoration: underline !important;
+}
+
 .row {
   margin-top: $spacer;
 }

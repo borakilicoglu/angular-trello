@@ -14,6 +14,7 @@ import { Board } from '@app/board/board.interface';
 export class BoardComponent implements OnInit {
   private sub: any;
   board: Board;
+  starredBoards: Board;
   lists: List[];
   edit: boolean = false;
 
