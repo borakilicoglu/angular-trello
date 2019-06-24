@@ -11,4 +11,4 @@ import { LoginComponent } from './login.component';
   imports: [CommonModule, ReactiveFormsModule, TranslateModule, NgbModule, LoginRoutingModule],
   declarations: [LoginComponent]
 })
-export class LoginModule {}
+export class LoginModule { }
