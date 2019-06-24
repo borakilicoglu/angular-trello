@@ -18,6 +18,9 @@
         <i class="fas fa-star text-white" *ngIf="board.star"></i>
         <i class="far fa-star text-white" *ngIf="!board.star"></i>
       </button>
+      <button type="button" class="btn btn-sm btn-danger float-right" (click)="deleteBoard(board.id)">
+        <i class="fas fa-trash"></i>
+      </button>
     </div>
   </div>
   <div class="row">

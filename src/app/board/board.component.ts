@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../services/board.service';
 import { ListService } from '../services/list.service';
@@ -20,6 +21,7 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private boardService: BoardService,
     private listService: ListService,
     private renderer: Renderer2
@@ -43,6 +45,12 @@ export class BoardComponent implements OnInit {
       });
     }, 15);
   }
+
+  deleteBoard = (id: string) => {
+    this.boardService.delete(id).subscribe(data => {
+      this.router.navigate(['/']), { replaceUrl: true };
+    });
+  };
 
   starToggle = (id: string) => {
     this.board.star ? this.removeStar(id) : this.addStar(id);

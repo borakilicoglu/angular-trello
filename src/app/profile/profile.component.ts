@@ -7,14 +7,12 @@ import { AuthenticationService, CredentialsService, I18nService } from '@app/cor
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  constructor(private credentialsService: CredentialsService) {}
 
-  constructor(private credentialsService: CredentialsService, ) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get user(): any | null {
     const credentials = this.credentialsService.credentials;
-    return credentials ? credentials : null
+    return credentials ? credentials : null;
   }
 }

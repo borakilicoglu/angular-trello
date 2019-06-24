@@ -11,7 +11,7 @@ import { Board } from '@app/board/board.interface';
 export class BoardsComponent implements OnInit {
   boards: Board[];
 
-  constructor(private boardService: BoardService, private router: Router) { }
+  constructor(private boardService: BoardService, private router: Router) {}
 
   ngOnInit() {
     this.boardService.findAll().subscribe(data => {
@@ -22,15 +22,25 @@ export class BoardsComponent implements OnInit {
     });
   }
 
-  create = (name: string) => {
-    this.boardService.create({ name }).subscribe(data => {
-      console.log('New board generated!');
+  starToggle = (id: string) => {
+    this.boards.find(board => board.id == id).star ? this.removeStar(id) : this.addStar(id);
+  };
+
+  addStar = (id: string, name?: string) => {
+    this.boardService.addStar(id, { name }).subscribe((data: any) => {
+      this.boards.find(board => board.id == id).star = data;
     });
   };
 
-  delete = (id: string) => {
-    this.boardService.delete(id).subscribe(data => {
-      this.boards.splice(this.boards.findIndex(x => x.id === id), 1);
+  removeStar = (id: string) => {
+    this.boardService.removeStar(id).subscribe((data: any) => {
+      this.boards.find(board => board.id == id).star = data;
+    });
+  };
+
+  create = (name: string) => {
+    this.boardService.create({ name }).subscribe(data => {
+      console.log('New board generated!');
     });
   };
 

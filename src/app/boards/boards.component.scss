@@ -1,8 +1,8 @@
 @import "src/theme/theme-variables";
 
-.logo {
-  width: 100px;
-}
+// .logo {
+//   width: 100px;
+// }
 
 q {
   font-style: italic;
@@ -13,10 +13,11 @@ q {
 .jumbotron {
   // padding: 0.5rem 0.5rem !important;
   padding: 0.5rem 0.5rem;
+  height: 80px;
   .btn-default:hover {
     background-color: rgba(9, 30, 66, 0.13);
   }
-  .fa-ellipsis-h {
+  .fa-star {
     color: #e4606d !important;
   }
   &:hover {

@@ -11,4 +11,4 @@ import { ProfileComponent } from './profile.component';
   imports: [CommonModule, ReactiveFormsModule, TranslateModule, NgbModule, ProfileRoutingModule],
   declarations: [ProfileComponent]
 })
-export class ProfileModule { }
+export class ProfileModule {}
