@@ -61,6 +61,7 @@ export class BoardsComponent implements OnInit {
   goToBoard(id: string) {
     this.router.navigate(['/board', id]), { replaceUrl: true };
     this.viewedOrder.unshift(id);
+    console.log(id);
     localStorage.setItem('viewedOrder', JSON.stringify(this.viewedOrder));
   }
 }
