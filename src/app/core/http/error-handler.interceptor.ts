@@ -19,6 +19,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
   // Customize the default error handler here if needed
   private errorHandler(response: HttpEvent<any>): Observable<HttpEvent<any>> {
+    console.log(response);
     if (!environment.production) {
       // Do something with the error
       log.error('Request error', response);
