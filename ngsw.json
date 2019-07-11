@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1562867912864,
+  "timestamp": 1562869934572,
   "index": "https://borakilicoglu.github.io/angular-trello/index.html",
   "assetGroups": [
     {
@@ -10,7 +10,7 @@
       "urls": [
         "https://borakilicoglu.github.io/angular-trello/favicon.ico",
         "https://borakilicoglu.github.io/angular-trello/index.html",
-        "https://borakilicoglu.github.io/angular-trello/main.2468b2ffbe7bddfb5f0c.js",
+        "https://borakilicoglu.github.io/angular-trello/main.0ae69150d872365abf31.js",
         "https://borakilicoglu.github.io/angular-trello/polyfills.a8625576b737a0515458.js",
         "https://borakilicoglu.github.io/angular-trello/runtime.26209474bfa8dc87a77c.js",
         "https://borakilicoglu.github.io/angular-trello/styles.91465a48f9a3739dee55.css"
@@ -33,8 +33,8 @@
     "https://borakilicoglu.github.io/angular-trello/assets/angular-trello.png": "a6185054815801e1723a229bb0a3342a54bd0e1d",
     "https://borakilicoglu.github.io/angular-trello/assets/pattern.png": "48863842f7f119214d78b45245ab09f49ba0c837",
     "https://borakilicoglu.github.io/angular-trello/favicon.ico": "51e6f90064eea7a1b24c9ae68d27b542bdbea4d7",
-    "https://borakilicoglu.github.io/angular-trello/index.html": "ff8bc97169b59c6eab954b9f99e2e857190f6729",
-    "https://borakilicoglu.github.io/angular-trello/main.2468b2ffbe7bddfb5f0c.js": "204251b9f6cf6edc846647d79ea8c4c1d0bf29a6",
+    "https://borakilicoglu.github.io/angular-trello/index.html": "2eba93da1daabaaa7b3e020d5e6df1cf3de9a68a",
+    "https://borakilicoglu.github.io/angular-trello/main.0ae69150d872365abf31.js": "818d16d431822c47dfb86f6678a6e7454ece50f5",
     "https://borakilicoglu.github.io/angular-trello/polyfills.a8625576b737a0515458.js": "da124d9ac33a2ff2da15d0ab11273e93ddd40a79",
     "https://borakilicoglu.github.io/angular-trello/runtime.26209474bfa8dc87a77c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "https://borakilicoglu.github.io/angular-trello/styles.91465a48f9a3739dee55.css": "9142355fcd1c574dfdd28a2e0ffc1b4302bd51b7"
