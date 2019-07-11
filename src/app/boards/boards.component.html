@@ -1,13 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-2">
-      <nav class="nav flex-column mt-3">
-        <a class="nav-link text-danger pl-0" routerLinkActive="active" routerLink="/">Home</a>
-        <a class="nav-link text-danger pl-0" routerLinkActive="active" routerLink="/boards">Boards</a>
-        <a class="nav-link text-danger pl-0" routerLinkActive="active" routerLink="/about">About</a>
-      </nav>
-    </div>
-    <div class="col-sm-10">
+    <div class="col-sm-12">
       <div class="row" *ngIf="starredBoards && starredBoards.length">
         <div class="col-sm-12">
           <h6 class="mb-2 font-weight-bold"><i class="fas fa-star mr-2"></i>Starred Boards</h6>
@@ -17,6 +10,7 @@
             <div class="d-flex">
               <div class="flex-grow-1 align-self-center">
                 <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+                <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small>
               </div>
               <div>
                 <button type="button" class="btn btn-default float-right" (click)="starToggle(board.id)">
@@ -38,6 +32,7 @@
             <div class="d-flex">
               <div class="flex-grow-1 align-self-center">
                 <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+                <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small>
               </div>
               <div>
                 <button type="button" class="btn btn-default float-right" (click)="starToggle(board.id)">
@@ -59,6 +54,7 @@
             <div class="d-flex">
               <div class="flex-grow-1 align-self-center">
                 <p class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+                <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small>
               </div>
               <div>
                 <button type="button" class="btn btn-default float-right" (click)="starToggle(board.id)">

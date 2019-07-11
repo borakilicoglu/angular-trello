@@ -23,12 +23,12 @@ import { AuthInterceptor } from './http/auth.interceptor';
     I18nService,
     HttpCacheService,
     ApiPrefixInterceptor,
-    ErrorHandlerInterceptor,
     CacheInterceptor,
     {
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy
     },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })

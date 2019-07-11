@@ -12,7 +12,7 @@ export class BoardsComponent implements OnInit {
   boards: Board[];
   starredBoards: Board[];
   recentlyBoards: Board[];
-  viewedOrder: string[] = [];
+  viewedOrder: any[] = [];
 
   constructor(private boardService: BoardService, private router: Router) {}
 
@@ -22,7 +22,9 @@ export class BoardsComponent implements OnInit {
       this.starredBoards = data.filter(x => x.star == true);
       if (JSON.parse(localStorage.getItem('viewedOrder'))) {
         this.viewedOrder = JSON.parse(localStorage.getItem('viewedOrder'));
+        console.log(this.viewedOrder);
         this.recentlyBoards = data.sort((a, b) => this.viewedOrder.indexOf(a.id) - this.viewedOrder.indexOf(b.id));
+        console.log(this.recentlyBoards);
       }
     });
     this.boardService.listen().subscribe((data: Board) => {
@@ -58,9 +60,17 @@ export class BoardsComponent implements OnInit {
     });
   };
 
-  goToBoard(id: string) {
-    this.router.navigate(['/board', id]), { replaceUrl: true };
+  setOrder(id: string) {
+    this.viewedOrder = this.viewedOrder.filter((item: string) => item !== id);
     this.viewedOrder.unshift(id);
     localStorage.setItem('viewedOrder', JSON.stringify(this.viewedOrder));
+  }
+
+  goToBoard(id: string) {
+    this.router.navigate(['/board', id]), { replaceUrl: true };
+    JSON.parse(localStorage.getItem('viewedOrder'))
+      ? this.setOrder(id)
+      : (this.viewedOrder = this.boards.map(board => board.id)),
+      this.setOrder(id);
   }
 }
