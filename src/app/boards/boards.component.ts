@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { BoardService } from '../services/board.service';
 import { Board } from '@app/board/board.interface';
 
+import { AuthenticationService, CredentialsService, I18nService } from '@app/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: './boards.component.html',
@@ -12,13 +14,20 @@ export class BoardsComponent implements OnInit {
   boards: Board[];
   starredBoards: Board[];
   recentlyBoards: Board[];
+  persoanlBoards: Board[];
 
-  constructor(private boardService: BoardService, private router: Router) {}
+  constructor(
+    private boardService: BoardService,
+    private router: Router,
+    private credentialsService: CredentialsService
+  ) {}
 
   ngOnInit() {
     this.boardService.findAll().subscribe(data => {
       this.boards = [...data];
       this.starredBoards = data.filter(x => x.star == true);
+      const credentials = this.credentialsService.credentials;
+      this.persoanlBoards = data.filter(x => x.author.id == credentials.id);
       if (JSON.parse(localStorage.getItem('recentlyBoards')))
         this.recentlyBoards = JSON.parse(localStorage.getItem('recentlyBoards'));
     });
