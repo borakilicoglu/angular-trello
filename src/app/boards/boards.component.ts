@@ -14,12 +14,14 @@ export class BoardsComponent implements OnInit {
   boards: Board[];
   starredBoards: Board[];
   recentlyBoards: Board[];
-  persoanlBoards: Board[];
+  recentlyOrder: any[] = [];
+  personalBoards: Board[];
 
   constructor(
     private boardService: BoardService,
     private router: Router,
-    private credentialsService: CredentialsService
+    private credentialsService: CredentialsService,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -27,13 +29,21 @@ export class BoardsComponent implements OnInit {
       this.boards = [...data];
       this.starredBoards = data.filter(x => x.star == true);
       const credentials = this.credentialsService.credentials;
-      this.persoanlBoards = data.filter(x => x.author.id == credentials.id);
-      if (JSON.parse(localStorage.getItem('recentlyBoards')))
-        this.recentlyBoards = JSON.parse(localStorage.getItem('recentlyBoards'));
+      this.personalBoards = data.filter(x => x.author.id == credentials.id);
+      this.setRecentlyBoards(data);
     });
     this.boardService.listen().subscribe((data: Board) => {
       this.boards = [...this.boards, data];
     });
+  }
+
+  setRecentlyBoards(data: Array<any>) {
+    if (JSON.parse(localStorage.getItem('recentlyOrder'))) {
+      this.recentlyOrder = JSON.parse(localStorage.getItem('recentlyOrder'));
+      this.recentlyBoards = this.recentlyOrder.map(function(e) {
+        return data.find(a => a.id == e);
+      });
+    }
   }
 
   starToggle = (id: string) => {
@@ -64,18 +74,18 @@ export class BoardsComponent implements OnInit {
     });
   };
 
-  setRecentlyBoards(id: string) {
-    if (this.recentlyBoards) {
-      this.recentlyBoards = this.recentlyBoards.filter((item: any) => item.id !== id);
-      this.recentlyBoards.unshift(this.boards.find(x => x.id == id));
+  setRecentlyOrder(id: string) {
+    if (this.recentlyOrder) {
+      this.recentlyOrder = this.recentlyOrder.filter((item: any) => item !== id);
+      this.recentlyOrder.unshift(id);
     } else {
-      this.recentlyBoards = this.boards.filter(x => x.id == id);
+      this.recentlyOrder.push(id);
     }
-    localStorage.setItem('recentlyBoards', JSON.stringify(this.recentlyBoards));
+    localStorage.setItem('recentlyOrder', JSON.stringify(this.recentlyOrder));
   }
 
   goToBoard(id: string) {
-    this.setRecentlyBoards(id);
+    this.setRecentlyOrder(id);
     this.router.navigate(['/board', id]), { replaceUrl: true };
   }
 }
