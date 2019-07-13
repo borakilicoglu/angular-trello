@@ -44,6 +44,23 @@
               </label>
               <label class="d-block">
                 <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  autocomplete="email"
+                  [placeholder]="'Email' | translate"
+                />
+                <span hidden translate>Email</span>
+                <small
+                  [hidden]="registerForm.controls.email.valid || registerForm.controls.email.untouched"
+                  class="text-danger"
+                  translate
+                >
+                  Email is required
+                </small>
+              </label>
+              <label class="d-block">
+                <input
                   type="password"
                   class="form-control"
                   formControlName="password"

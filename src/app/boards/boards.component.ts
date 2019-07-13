@@ -40,8 +40,9 @@ export class BoardsComponent implements OnInit {
   setRecentlyBoards(data: Array<any>) {
     if (JSON.parse(localStorage.getItem('recentlyOrder'))) {
       this.recentlyOrder = JSON.parse(localStorage.getItem('recentlyOrder'));
-      this.recentlyBoards = this.recentlyOrder.map(function(e) {
-        return data.find(a => a.id == e);
+      this.recentlyOrder.map(function(e) {
+        let result = data.find(a => a.id == e);
+        result !== undefined ? this.recentlyBoards.unshift[result] : false;
       });
     }
   }

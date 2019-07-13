@@ -14,6 +14,7 @@ export interface LoginContext {
 
 export interface RegisterContext {
   username: string;
+  email: string;
   password: string;
   remember?: boolean;
 }
