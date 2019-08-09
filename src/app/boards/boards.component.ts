@@ -55,16 +55,16 @@ export class BoardsComponent implements OnInit {
     this.starredBoards = this.boards.filter(x => x.star == true);
   };
 
-  addStar = (id: string, name?: string) => {
-    this.boardService.addStar(id, { name }).subscribe((data: any) => {
-      this.boards.find(board => board.id == id).star = data;
+  addStar = (id: string) => {
+    this.boardService.addStar(id).subscribe((data: Board) => {
+      this.boards.find(board => board.id == id).star = data.star;
       this.starredBoardsToggle();
     });
   };
 
   removeStar = (id: string) => {
-    this.boardService.removeStar(id).subscribe((data: any) => {
-      this.boards.find(board => board.id == id).star = data;
+    this.boardService.removeStar(id).subscribe((data: Board) => {
+      this.boards.find(board => board.id == id).star = data.star;
       this.starredBoardsToggle();
     });
   };

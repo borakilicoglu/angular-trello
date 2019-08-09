@@ -13,9 +13,14 @@
       </div>
     </div>
     <div>
-      <button type="button" class="btn btn-default float-right" (click)="delete(list.id)">
-        <i class="fas fa-ellipsis-h"></i>
-      </button>
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" id="dropdownBasic1" ngbDropdownToggle class="btn btn-default float-right">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="delete(list.id)">Delete</button>
+        </div>
+      </div>
     </div>
   </div>
   <app-card *ngFor="let card of cards; let i = index" [card]="card" [deleteCard]="deleteCard"></app-card>

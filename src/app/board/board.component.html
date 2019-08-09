@@ -14,9 +14,10 @@
       <button type="button" class="btn btn-sm btn-secondary board-name" (click)="edit = !edit" [hidden]="edit">
         {{ board.name }}
       </button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="starToggle(board.id)">
-        <i class="fas fa-star text-white" *ngIf="board.star"></i>
-        <i class="far fa-star text-white" *ngIf="!board.star"></i>
+      <button type="button" class="btn btn-sm btn-outline-secondary" (click)="starToggle(board.id)">
+        <i class="fas fa-star text-danger" *ngIf="board.star"></i>
+        <i class="far fa-star text-danger" *ngIf="!board.star"></i>
+        {{ board.stars.length }}
       </button>
       <button type="button" class="btn btn-sm btn-secondary float-right" (click)="deleteBoard(board.id)">
         <i class="fas fa-trash"></i>
