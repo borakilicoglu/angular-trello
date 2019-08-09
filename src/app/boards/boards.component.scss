@@ -12,8 +12,9 @@ q {
 
 .jumbotron {
   // padding: 0.5rem 0.5rem !important;
-  padding: 0.5rem 0.5rem;
-  height: 80px;
+  background: #282c34;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  // height: 80px;
   .btn-default:hover {
     background-color: rgba(9, 30, 66, 0.13);
   }

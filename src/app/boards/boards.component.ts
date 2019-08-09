@@ -13,9 +13,9 @@ import { AuthenticationService, CredentialsService, I18nService } from '@app/cor
 export class BoardsComponent implements OnInit {
   boards: Board[];
   starredBoards: Board[];
-  recentlyBoards: Board[];
+  recentlyBoards: Board[] = [];
   recentlyOrder: any[] = [];
-  personalBoards: Board[];
+  personalBoards: Board[] = [];
 
   constructor(
     private boardService: BoardService,
@@ -40,9 +40,9 @@ export class BoardsComponent implements OnInit {
   setRecentlyBoards(data: Array<any>) {
     if (JSON.parse(localStorage.getItem('recentlyOrder'))) {
       this.recentlyOrder = JSON.parse(localStorage.getItem('recentlyOrder'));
-      this.recentlyOrder.map(function(e) {
+      this.recentlyOrder.map((e: Board) => {
         let result = data.find(a => a.id == e);
-        result !== undefined ? this.recentlyBoards.unshift[result] : false;
+        result !== undefined ? (this.recentlyBoards = [...this.recentlyBoards, result]) : false;
       });
     }
   }

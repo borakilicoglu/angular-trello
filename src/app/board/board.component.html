@@ -11,14 +11,14 @@
           (keyup.enter)="updateBoard(board.id, board.name)"
         />
       </div>
-      <button type="button" class="btn btn-sm btn-danger board-name" (click)="edit = !edit" [hidden]="edit">
+      <button type="button" class="btn btn-sm btn-secondary board-name" (click)="edit = !edit" [hidden]="edit">
         {{ board.name }}
       </button>
-      <button type="button" class="btn btn-sm btn-danger" (click)="starToggle(board.id)">
+      <button type="button" class="btn btn-sm btn-secondary" (click)="starToggle(board.id)">
         <i class="fas fa-star text-white" *ngIf="board.star"></i>
         <i class="far fa-star text-white" *ngIf="!board.star"></i>
       </button>
-      <button type="button" class="btn btn-sm btn-danger float-right" (click)="deleteBoard(board.id)">
+      <button type="button" class="btn btn-sm btn-secondary float-right" (click)="deleteBoard(board.id)">
         <i class="fas fa-trash"></i>
       </button>
     </div>

@@ -1,8 +1,9 @@
 @import "src/theme/theme-variables";
 
 .sub-header {
-  background: #e4606d;
+  background-color: #f7f7f7;
   margin-bottom: $spacer;
+  border-bottom: 1px solid #ececec;
   .hidden {
     display: none !important;
   }

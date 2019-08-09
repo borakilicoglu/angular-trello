@@ -1,12 +1,17 @@
 @import "src/theme/theme-variables";
 
-// .navbar {
-//   margin-bottom: $spacer;
-// }
+.navbar {
+  // margin-bottom: $spacer;
+  background-color: #20232a;
+  padding: 0.625rem 1rem;
+}
 
-// .navbar-brand {
-//   color: #61dafb;
-// }
+.navbar-brand {
+  color: #61dafb;
+  &:hover {
+    color: #61dafb;
+  }
+}
 
 .nav-link.dropdown-toggle {
   cursor: pointer;

@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand font-weight-bold text-info" routerLink="/" translate>APP_NAME</a>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand text-danger" routerLink="/" translate>APP_NAME</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -13,7 +13,7 @@
     </button>
     <div id="navbar-menu" class="collapse navbar-collapse float-xs-none" [ngbCollapse]="menuHidden">
       <div class="navbar-nav">
-        <a class="nav-item nav-link text-uppercase" routerLink="/boards" routerLinkActive="active">
+        <a class="nav-item nav-link" routerLink="/boards" routerLinkActive="active">
           <i class="fas fa-columns"></i>
           <span translate>Boards</span>
         </a>
