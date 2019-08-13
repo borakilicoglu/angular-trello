@@ -20,6 +20,7 @@ import { ListModule } from './list/list.module';
 import { CardModule } from './card/card.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RecoverComponent } from './recover/recover.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,7 @@ import { AppRoutingModule } from './app-routing.module';
     ListModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, RecoverComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
