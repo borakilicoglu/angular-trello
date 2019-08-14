@@ -19,6 +19,13 @@ export interface RegisterContext {
   remember?: boolean;
 }
 
+export interface ResetContext {
+  id: string;
+  date: string;
+  password: string;
+  confrimPassword: string;
+}
+
 /**
  * Provides a base for authentication workflow.
  * The login/logout methods should be replaced with proper implementation.
@@ -43,7 +50,7 @@ export class AuthenticationService {
 
   /**
    * Register the user.
-   * @param context The registewr parameters.
+   * @param context The register parameters.
    * @return The user credentials.
    */
   register(context: RegisterContext): Observable<Credentials> {
@@ -68,5 +75,13 @@ export class AuthenticationService {
   getAuthorizationToken(): any {
     const credentials = JSON.parse(localStorage.getItem('credentials'));
     return credentials && credentials.token;
+  }
+
+  forgotPassword(email: string): Observable<any> {
+    return this.http.get<any>(`${environment.serverUrl}/auth/forgot/` + email);
+  }
+
+  resetPassword(context: ResetContext): Observable<any> {
+    return this.http.post<any>(`${environment.serverUrl}/auth/reset/`, { context });
   }
 }

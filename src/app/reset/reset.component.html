@@ -1,0 +1,84 @@
+<div class="reset-container bg-light">
+  <div class="reset-box">
+    <!-- <div>
+        <h6 class="d-inline-block">v{{ version }}</h6>
+        <div class="d-inline-block ml-3" ngbDropdown>
+          <button id="language-dropdown" class="btn btn-sm btn-secondary" ngbDropdownToggle>
+            {{ currentLanguage }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="language-dropdown">
+            <button class="dropdown-item" *ngFor="let language of languages" (click)="setLanguage(language)">
+              {{ language }}
+            </button>
+          </div>
+        </div>
+      </div> -->
+    <div class="container">
+      <div class="col-md-4 mt-3 mx-auto">
+        <div class="card">
+          <div class="card-body" [hidden]="!message">
+            <p class="mb-0">{{ message }}</p>
+          </div>
+          <div class="card-body" [hidden]="message">
+            <h3 class="text-center" translate>Reset Password</h3>
+            <p class="text-center">Resetting password.</p>
+            <form (ngSubmit)="reset()" [formGroup]="resetForm" novalidate>
+              <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
+                Password incorrect.
+              </div>
+              <div class="form-group">
+                <label class="d-block">
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                    autocomplete="password"
+                    [placeholder]="'New password' | translate"
+                  />
+                  <span hidden translate>Password</span>
+                  <p
+                    [hidden]="resetForm.controls.password.valid || resetForm.controls.password.pristine"
+                    class="text-danger mb-0 small"
+                    translate
+                  >
+                    Password is required.
+                  </p>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="d-block">
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="passwordConfrim"
+                    autocomplete="password"
+                    [placeholder]="'Confrim new password' | translate"
+                  />
+                  <span hidden translate>Confrim Password</span>
+                  <p
+                    [hidden]="resetForm.controls.passwordConfrim.valid || resetForm.controls.passwordConfrim.pristine"
+                    class="text-danger mb-0 small"
+                    translate
+                  >
+                    Confrim password is required.
+                  </p>
+                  <p
+                    [hidden]="!resetForm.hasError('mismatch') || resetForm.controls.passwordConfrim.pristine"
+                    class="text-danger mb-0 small"
+                    translate
+                  >
+                    Passwords don't match.
+                  </p>
+                </label>
+              </div>
+              <button class="btn btn-danger w-100" type="submit" [disabled]="resetForm.invalid || isLoading">
+                <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+                <span translate>Save Password</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

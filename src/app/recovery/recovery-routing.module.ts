@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@app/core';
-import { RecoverComponent } from './recover.component';
+import { RecoveryComponent } from './recovery.component';
 import { Shell } from '@app/shell/shell.service';
 
 const routes: Routes = [
-  Shell.childRoutes([{ path: 'recover', component: RecoverComponent, data: { title: extract('Recover') } }])
+  Shell.childRoutes([{ path: 'recovery', component: RecoveryComponent, data: { title: extract('Recovery') } }])
 ];
 
 @NgModule({
@@ -14,4 +14,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class RecoverRoutingModule {}
+export class RecoveryRoutingModule {}

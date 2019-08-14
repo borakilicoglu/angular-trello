@@ -16,11 +16,13 @@ import { AboutModule } from './about/about.module';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { ProfileModule } from './profile/profile.module';
+import { ForgotModule } from './forgot/forgot.module';
+import { ResetModule } from './reset/reset.module';
+import { RecoveryModule } from './recovery/recovery.module';
 import { ListModule } from './list/list.module';
 import { CardModule } from './card/card.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RecoverComponent } from './recover/recover.component';
 
 @NgModule({
   imports: [
@@ -38,12 +40,15 @@ import { RecoverComponent } from './recover/recover.component';
     AboutModule,
     LoginModule,
     RegisterModule,
+    ForgotModule,
+    ResetModule,
+    RecoveryModule,
     ProfileModule,
     CardModule,
     ListModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, RecoverComponent],
+  declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
