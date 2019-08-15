@@ -1,5 +1,6 @@
 <div class="login-container bg-light">
   <div class="login-box">
+    <img [src]="'assets/angular.png'" class="logo" alt="image" />
     <!-- <div>
       <h6 class="d-inline-block">v{{ version }}</h6>
       <div class="d-inline-block ml-3" ngbDropdown>
@@ -51,9 +52,9 @@
               </button>
             </form>
           </div>
-          <div class="card-footer" [hidden]="message">
-            <button type="button" class="btn btn-link" [routerLink]="['/register']">Register</button>
-            <button type="button" class="btn btn-link" [routerLink]="['/login']">Forgot your password?</button>
+          <div class="card-footer text-center" [hidden]="message">
+            <button type="button" class="btn btn-link text-danger" [routerLink]="['/register']">Register</button>
+            <button type="button" class="btn btn-link text-danger" [routerLink]="['/login']">Login</button>
           </div>
         </div>
       </div>

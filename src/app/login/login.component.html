@@ -1,7 +1,7 @@
 <div class="login-container bg-light">
   <div class="login-box">
-    <h1 translate>Login</h1>
-    <div>
+    <img [src]="'assets/angular.png'" class="logo" alt="image" />
+    <!-- <div>
       <h6 class="d-inline-block">v{{ version }}</h6>
       <div class="d-inline-block ml-3" ngbDropdown>
         <button id="language-dropdown" class="btn btn-sm btn-secondary" ngbDropdownToggle>
@@ -13,11 +13,12 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="container">
       <div class="col-md-4 mt-3 mx-auto">
         <div class="card">
           <div class="card-body">
+            <h4 translate class="text-center">Log in to your account</h4>
             <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
               <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
                 Username or password incorrect.

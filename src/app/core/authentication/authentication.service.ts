@@ -21,9 +21,7 @@ export interface RegisterContext {
 
 export interface ResetContext {
   id: string;
-  date: string;
   password: string;
-  confrimPassword: string;
 }
 
 /**
@@ -82,6 +80,7 @@ export class AuthenticationService {
   }
 
   resetPassword(context: ResetContext): Observable<any> {
-    return this.http.post<any>(`${environment.serverUrl}/auth/reset/`, { context });
+    const id = context.id.substring(0, context.id.lastIndexOf('-'));
+    return this.http.put<any>(`${environment.serverUrl}/auth/reset/${id}`, { ...context });
   }
 }

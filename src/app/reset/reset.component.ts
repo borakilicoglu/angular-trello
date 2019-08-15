@@ -18,6 +18,7 @@ export class ResetComponent implements OnInit, OnDestroy {
   error: string | undefined;
   resetForm!: FormGroup;
   isLoading = false;
+  message: string;
 
   constructor(
     private router: Router,
@@ -27,17 +28,7 @@ export class ResetComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService
   ) {}
 
-  public id: string;
-  public date: string;
-  public message: string;
-
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap
-      .get('params')
-      .substring(0, this.route.snapshot.paramMap.get('params').lastIndexOf('-'));
-    this.date = this.route.snapshot.paramMap
-      .get('params')
-      .substr(this.route.snapshot.paramMap.get('params').lastIndexOf('-') + 1);
     this.createForm();
   }
 
@@ -45,10 +36,11 @@ export class ResetComponent implements OnInit, OnDestroy {
 
   reset() {
     this.isLoading = true;
-    this.resetForm.controls['id'].setValue(this.id);
-    this.resetForm.controls['date'].setValue(this.date);
-    console.log(this.resetForm.value);
-    const reset$ = this.authenticationService.resetPassword(this.resetForm.value);
+    const payload = {
+      id: this.route.snapshot.paramMap.get('params'),
+      password: this.resetForm.controls['password'].value
+    };
+    const reset$ = this.authenticationService.resetPassword(payload);
     reset$
       .pipe(
         finalize(() => {
@@ -61,11 +53,11 @@ export class ResetComponent implements OnInit, OnDestroy {
         credentials => {
           this.message = 'True.';
           // log.debug(`${credentials.username} successfully logged in`);
-          // this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
-        error => {
-          log.debug(`Reset error: ${error}`);
-          this.error = error;
+        err => {
+          log.debug(`Reset error: ${err}`);
+          this.error = err.error.message;
         }
       );
   }
@@ -86,14 +78,13 @@ export class ResetComponent implements OnInit, OnDestroy {
     this.resetForm = this.formBuilder.group(
       {
         password: ['', Validators.required],
-        passwordConfrim: ['', Validators.required],
-        id: [''],
-        date: ['']
+        passwordConfrim: ['', Validators.required]
       },
       { validator: this.passwordMatchValidator }
     );
   }
-  passwordMatchValidator = () => {
+
+  passwordMatchValidator = (): any => {
     if (this.resetForm) {
       let data =
         this.resetForm.get('password').value === this.resetForm.get('passwordConfrim').value

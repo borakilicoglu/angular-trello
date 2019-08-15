@@ -1,5 +1,6 @@
 <div class="reset-container bg-light">
   <div class="reset-box">
+    <img [src]="'assets/angular.png'" class="logo" alt="image" />
     <!-- <div>
         <h6 class="d-inline-block">v{{ version }}</h6>
         <div class="d-inline-block ml-3" ngbDropdown>
@@ -24,7 +25,7 @@
             <p class="text-center">Resetting password.</p>
             <form (ngSubmit)="reset()" [formGroup]="resetForm" novalidate>
               <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
-                Password incorrect.
+                {{ error }}
               </div>
               <div class="form-group">
                 <label class="d-block">
