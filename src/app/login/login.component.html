@@ -1,4 +1,4 @@
-<div class="login-container bg-light">
+<div class="login-container">
   <div class="login-box">
     <img [src]="'assets/angular.png'" class="logo" alt="image" />
     <!-- <div>
@@ -18,7 +18,7 @@
       <div class="col-md-4 mt-3 mx-auto">
         <div class="card">
           <div class="card-body">
-            <h4 translate class="text-center">Log in to your account</h4>
+            <h4 translate class="text-center mb-3">Log in to your account</h4>
             <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
               <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
                 Username or password incorrect.
@@ -75,8 +75,10 @@
         </div>
       </div>
       <div class="col-md-4 mt-3 mx-auto text-center">
-        <button type="button" class="btn btn-link" [routerLink]="['/register']">Register</button>
-        <button type="button" class="btn btn-link" [routerLink]="['/auth/forgot']">Forgot your password?</button>
+        <button type="button" class="btn btn-link text-danger" [routerLink]="['/register']">Register</button>
+        <button type="button" class="btn btn-link text-danger" [routerLink]="['/auth/forgot']">
+          Forgot your password?
+        </button>
       </div>
     </div>
   </div>

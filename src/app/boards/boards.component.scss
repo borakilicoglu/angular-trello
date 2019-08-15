@@ -10,6 +10,10 @@ q {
   quotes: "« " " »";
 }
 
+.container-fluid {
+  padding-top: 80px;
+}
+
 .jumbotron {
   // padding: 0.5rem 0.5rem !important;
   background: #282c34;
@@ -33,5 +37,5 @@ nav a.active {
 }
 
 .row {
-  margin-top: $spacer;
+  // margin-top: $spacer;
 }

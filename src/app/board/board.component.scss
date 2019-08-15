@@ -1,5 +1,9 @@
 @import "src/theme/theme-variables";
 
+.container-fluid {
+  padding-top: 60px;
+}
+
 .sub-header {
   background-color: #f7f7f7;
   margin-bottom: $spacer;

@@ -16,9 +16,13 @@
 // Theme customization
 @import "theme/theme";
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: #fff;
-  margin-bottom: 30px;
 }
 
 .btn {

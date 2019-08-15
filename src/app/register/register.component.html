@@ -18,7 +18,7 @@
       <div class="col-md-4 mt-3 mx-auto">
         <div class="card">
           <div class="card-body">
-            <h3 class="text-center" translate>Register</h3>
+            <h3 class="text-center mb-3" translate>Register</h3>
             <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
               <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
                 Username or password incorrect.
@@ -92,8 +92,10 @@
         </div>
       </div>
       <div class="col-md-4 mt-3 mx-auto text-center">
-        <button type="button" class="btn btn-link" [routerLink]="['/login']">Login</button>
-        <button type="button" class="btn btn-link" [routerLink]="['/auth/forgot']">Forgot your password?</button>
+        <button type="button" class="btn btn-link text-danger" [routerLink]="['/login']">Login</button>
+        <button type="button" class="btn btn-link text-danger" [routerLink]="['/auth/forgot']">
+          Forgot your password?
+        </button>
       </div>
     </div>
   </div>

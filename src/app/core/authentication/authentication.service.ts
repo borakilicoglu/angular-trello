@@ -71,7 +71,8 @@ export class AuthenticationService {
   }
 
   getAuthorizationToken(): any {
-    const credentials = JSON.parse(localStorage.getItem('credentials'));
+    const credentials =
+      JSON.parse(localStorage.getItem('credentials')) || JSON.parse(sessionStorage.getItem('credentials'));
     return credentials && credentials.token;
   }
 

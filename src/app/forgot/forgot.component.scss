@@ -2,6 +2,8 @@
 @import "~bootstrap/scss/mixins/_breakpoints";
 
 .login-container {
+  background: rgb(40, 44, 52);
+  background: linear-gradient(0deg, rgba(40, 44, 52, 1) 35%, rgba(32, 35, 42, 1) 100%);
   position: absolute;
   top: 0;
   bottom: 0;
