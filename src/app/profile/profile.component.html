@@ -1,41 +1,110 @@
-<div class="container h-100">
-  <div class="row h-100">
-    <div class="col-md-12 my-auto">
-      <div class="jumbotron">
-        <div class="form-group row">
-          <label for="staticUsername" class="col-sm-2 col-form-label">Username</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              readonly
-              class="form-control-plaintext"
-              id="staticUsername"
-              value="{{ user.username }}"
-            />
-          </div>
+<div class="bg-light pl-0 pr-0 pt-3 pb-3 mb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h6 class="mb-0">Manage Account</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white pl-0 pr-0 mb-0 shadow-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="nav">
+          <a class="nav-link text-danger pl-0 active" href="#">Account</a>
+          <a class="nav-link text-secondary pl-0 disable" href="#">Boards</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-4">
+          <h6 class="text-secondary">Profile</h6>
+          <p>Your email address is your identity on Angular Trello and is used to log in.</p>
         </div>
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ user.email }}" />
-          </div>
+        <div class="col-md-4">
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
+            <div class="form-group">
+              <label>Username</label>
+              <input class="form-control" formControlName="username" placeholder="Username" />
+              <!-- <p>Your choosen username: {{ profileForm.get('username').value }}</p> -->
+              <div *ngIf="profileForm.get('username').hasError('required')">
+                Oops, please provide a name!
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input class="form-control" formControlName="email" placeholder="Email" />
+              <div *ngIf="profileForm.controls.email.hasError('pattern')">
+                Oops, wrong pattern buddy!
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger" [disabled]="profileForm.invalid">
+              Update Profile
+            </button>
+          </form>
         </div>
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" />
-          </div>
+      </div>
+
+      <hr />
+
+      <div class="row mt-5 mb-5">
+        <div class="col-md-4">
+          <h6 class="text-secondary">Password</h6>
+          <p>Changing your password will also reset your API key.</p>
         </div>
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Role Select</label>
-          <div class="col-sm-10">
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>Admin</option>
-              <option>Guest</option>
-            </select>
-          </div>
+        <div class="col-md-4">
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit(PasswordForm)">
+            <div class="form-group">
+              <label>Current Password</label>
+              <input class="form-control" formControlName="password" placeholder="Enter your current password" />
+              <div *ngIf="profileForm.controls.password.errors?.minlength">
+                Write something longer please!
+              </div>
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input class="form-control" formControlName="newPassword" placeholder="Enter a new password" />
+              <div *ngIf="profileForm.controls.newPassword.errors?.minlength">
+                Write something longer please!
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Confirm New Password</label>
+              <input class="form-control" formControlName="newPasswordAgain" placeholder="Enter a new password again" />
+              <div *ngIf="profileForm.controls.newPasswordAgain.errors?.minlength">
+                Write something longer please!
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger" [disabled]="profileForm.invalid">
+              Update Password
+            </button>
+          </form>
         </div>
-        <button class="btn btn-danger float-right">Update Profile</button>
+      </div>
+
+      <hr />
+
+      <div class="row mt-5 mb-5">
+        <div class="col-md-4">
+          <h6 class="text-danger">Close Account</h6>
+          <p>
+            You must delete all apps on this account first. <br />
+            <strong>Warning:</strong> Closing your account is irreversible.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-outline-danger">
+            Close this account...
+          </button>
+        </div>
       </div>
     </div>
   </div>
