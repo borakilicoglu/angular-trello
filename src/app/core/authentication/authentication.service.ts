@@ -19,6 +19,18 @@ export interface RegisterContext {
   remember?: boolean;
 }
 
+export interface ProfileContext {
+  id: string;
+  username: string;
+  email: string;
+}
+
+export interface PasswordContext {
+  id: string;
+  password: string;
+  passwordNew: string;
+}
+
 export interface ResetContext {
   id: string;
   password: string;
@@ -76,12 +88,20 @@ export class AuthenticationService {
     return credentials && credentials.token;
   }
 
+  updateProfile(id: string, context: ProfileContext): Observable<any> {
+    return this.http.put<any>(`${environment.serverUrl}/users/${id}`, { ...context });
+  }
+
+  updatePassword(id: string, context: PasswordContext): Observable<any> {
+    return this.http.put<any>(`${environment.serverUrl}/auth/updatepassword/${id}`, { ...context });
+  }
+
   forgotPassword(email: string): Observable<any> {
     return this.http.get<any>(`${environment.serverUrl}/auth/forgot/` + email);
   }
 
   resetPassword(context: ResetContext): Observable<any> {
     const id = context.id.substring(0, context.id.lastIndexOf('-'));
-    return this.http.put<any>(`${environment.serverUrl}/auth/reset/${id}`, { ...context });
+    return this.http.put<any>(`${environment.serverUrl}/auth/resetpassword/${id}`, { ...context });
   }
 }

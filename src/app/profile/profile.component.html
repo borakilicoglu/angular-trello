@@ -30,7 +30,25 @@
           <p>Your email address is your identity on Angular Trello and is used to log in.</p>
         </div>
         <div class="col-md-4">
-          <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
+          <p>
+            <ngb-alert [dismissible]="true">
+              <strong>Warning!</strong> Better check yourself, you're not looking too good.
+            </ngb-alert>
+          </p>
+
+          <div class="alert alert-success alert-dismissible fade show" [hidden]="!profileMessage" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ profileMessage }}
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show" [hidden]="!profileError" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ profileError }}
+          </div>
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmitProfileForm(profileForm)">
             <div class="form-group">
               <label>Username</label>
               <input class="form-control" formControlName="username" placeholder="Username" />
@@ -49,6 +67,7 @@
             <button type="submit" class="btn btn-danger" [disabled]="profileForm.invalid">
               Update Profile
             </button>
+            <!-- <app-loader [isLoading]="isLoading" class="float-right"></app-loader> -->
           </form>
         </div>
       </div>
@@ -61,29 +80,45 @@
           <p>Changing your password will also reset your API key.</p>
         </div>
         <div class="col-md-4">
-          <form [formGroup]="profileForm" (ngSubmit)="onSubmit(PasswordForm)">
+          <div class="alert alert-success alert-dismissible fade show" [hidden]="!passwordMessage" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ passwordMessage }}
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show" [hidden]="!passwordError" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ passwordError }}
+          </div>
+          <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPasswordForm(passwordForm)">
             <div class="form-group">
               <label>Current Password</label>
               <input class="form-control" formControlName="password" placeholder="Enter your current password" />
-              <div *ngIf="profileForm.controls.password.errors?.minlength">
-                Write something longer please!
+              <div *ngIf="passwordForm.controls.password.errors?.minlength">
+                <p class="text-danger">Password must be 8 or more characters.</p>
               </div>
             </div>
+            <hr />
             <div class="form-group">
               <label>New Password</label>
-              <input class="form-control" formControlName="newPassword" placeholder="Enter a new password" />
-              <div *ngIf="profileForm.controls.newPassword.errors?.minlength">
-                Write something longer please!
+              <input class="form-control" formControlName="passwordNew" placeholder="Enter a new password" />
+              <div *ngIf="passwordForm.controls.passwordNew.errors?.minlength">
+                <p class="text-danger">Password must be 8 or more characters.</p>
               </div>
             </div>
             <div class="form-group">
               <label>Confirm New Password</label>
-              <input class="form-control" formControlName="newPasswordAgain" placeholder="Enter a new password again" />
-              <div *ngIf="profileForm.controls.newPasswordAgain.errors?.minlength">
-                Write something longer please!
+              <input class="form-control" formControlName="passwordConfrim" placeholder="Enter a new password again" />
+              <div *ngIf="passwordForm.controls.passwordConfrim.errors?.minlength">
+                <p class="text-danger mb-0">Password must be 8 or more characters.</p>
               </div>
+              <p [hidden]="!passwordForm.hasError('mismatch')" class="text-danger " translate>
+                Passwords don't match.
+              </p>
             </div>
-            <button type="submit" class="btn btn-danger" [disabled]="profileForm.invalid">
+            <button type="submit" class="btn btn-danger" [disabled]="passwordForm.invalid">
               Update Password
             </button>
           </form>

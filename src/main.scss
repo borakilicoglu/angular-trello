@@ -16,9 +16,12 @@
 // Theme customization
 @import "theme/theme";
 
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
 html,
 body {
   height: 100%;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -32,6 +35,7 @@ body {
 
 .btn:focus,
 .btn:active,
+a:focus,
 input {
   outline: none !important;
   box-shadow: none !important;

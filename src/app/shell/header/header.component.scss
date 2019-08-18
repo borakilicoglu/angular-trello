@@ -9,3 +9,8 @@
 .nav-link.dropdown-toggle {
   cursor: pointer;
 }
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background: #dc3545;
+}
