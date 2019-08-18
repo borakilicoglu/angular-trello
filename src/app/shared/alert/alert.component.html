@@ -1,3 +1,10 @@
-<p>
-  alert works!
-</p>
+<!-- <div class="alert" *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
+  Check out our awesome new features!
+</div> -->
+<div class="alert alert-{{ class }}" *ngIf="mal" type="success">
+  <button type="button" class="close" (click)="mal = null">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{ mal }}
+</div>
+<!-- <button class="btn btn-primary" (click)="changeSuccessMessage()">Change message</button> -->

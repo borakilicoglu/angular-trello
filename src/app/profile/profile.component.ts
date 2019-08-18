@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService, CredentialsService, untilDestroyed } from '@app/core';
+// import { AlertComponent } from 'app/shared/alert/alert.component'
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -9,13 +10,12 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  // @ViewChild(AlertComponent) child: AlertComponent;
   profileForm!: FormGroup;
   passwordForm!: FormGroup;
   isLoading = false;
-  profileMessage: string;
-  passwordMessage: string;
-  passwordError: string | undefined;
-  profileError: string | undefined;
+  messageProfileForm: any;
+  messagePasswordForm: any;
 
   constructor(
     private fb: FormBuilder,
@@ -29,6 +29,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnDestroy() {}
 
+  get user(): any | null {
+    const credentials = this.credentialsService.credentials;
+    return credentials ? credentials : null;
+  }
+
   onSubmitProfileForm() {
     this.isLoading = true;
     const updateProfile$ = this.authenticationService.updateProfile(this.user.id, this.profileForm.value);
@@ -41,13 +46,11 @@ export class ProfileComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe(
-        resr => {
-          this.profileMessage = 'Your profile updated successfully!';
-          this.profileError = '';
+        res => {
+          this.messageProfileForm = { text: 'Your profile updated successfully', class: 'success' };
         },
         err => {
-          this.profileMessage = '';
-          this.profileError = err.error.message;
+          this.messageProfileForm = { text: err.error.message, class: 'danger' };
         }
       );
   }
@@ -68,21 +71,10 @@ export class ProfileComponent implements OnInit {
         }),
         untilDestroyed(this)
       )
-      .subscribe(
-        resr => {
-          this.passwordMessage = 'Your password updated successfully!';
-          this.passwordError = '';
-        },
-        err => {
-          this.passwordMessage = '';
-          this.passwordError = err.error.message;
-        }
-      );
-  }
-
-  get user(): any | null {
-    const credentials = this.credentialsService.credentials;
-    return credentials ? credentials : null;
+      .subscribe
+      // res => { this.child.setSuccessMessage('Your password updated successfully'); },
+      // err => { this.child.setErrorMessage(err.error.message); }
+      ();
   }
 
   private createForm() {
@@ -100,7 +92,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  passwordMatchValidator = (): any => {
+  private passwordMatchValidator = (): any => {
     if (this.passwordForm) {
       let data =
         this.passwordForm.get('passwordNew').value === this.passwordForm.get('passwordConfrim').value

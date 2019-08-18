@@ -4,10 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderComponent } from './loader/loader.component';
 import { AddComponent } from './add/add.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  declarations: [LoaderComponent, AddComponent],
-  exports: [LoaderComponent, AddComponent]
+  declarations: [LoaderComponent, AddComponent, AlertComponent],
+  exports: [LoaderComponent, AddComponent, AlertComponent]
 })
 export class SharedModule {}
