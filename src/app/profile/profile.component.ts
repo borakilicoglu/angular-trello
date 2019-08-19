@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService, CredentialsService, untilDestroyed } from '@app/core';
-// import { AlertComponent } from 'app/shared/alert/alert.component'
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -71,10 +70,14 @@ export class ProfileComponent implements OnInit {
         }),
         untilDestroyed(this)
       )
-      .subscribe
-      // res => { this.child.setSuccessMessage('Your password updated successfully'); },
-      // err => { this.child.setErrorMessage(err.error.message); }
-      ();
+      .subscribe(
+        res => {
+          this.messagePasswordForm = { text: 'Your password updated successfully', class: 'success' };
+        },
+        err => {
+          this.messagePasswordForm = { text: err.error.message, class: 'danger' };
+        }
+      );
   }
 
   private createForm() {

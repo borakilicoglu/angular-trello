@@ -63,7 +63,7 @@
           <p>Changing your password will also reset your API key.</p>
         </div>
         <div class="col-md-4">
-          <app-alert></app-alert>
+          <app-alert [data]="messagePasswordForm"></app-alert>
           <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPasswordForm(passwordForm)">
             <div class="form-group">
               <label>Current Password</label>
