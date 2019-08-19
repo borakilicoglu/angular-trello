@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-4">
           <app-alert [data]="messageProfileForm"></app-alert>
-          <form [formGroup]="profileForm" (ngSubmit)="onSubmitProfileForm(profileForm)">
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmitProfileForm()">
             <div class="form-group">
               <label>Username</label>
               <input class="form-control" formControlName="username" placeholder="Username" />
@@ -64,7 +64,7 @@
         </div>
         <div class="col-md-4">
           <app-alert [data]="messagePasswordForm"></app-alert>
-          <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPasswordForm(passwordForm)">
+          <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPasswordForm()">
             <div class="form-group">
               <label>Current Password</label>
               <input class="form-control" formControlName="password" placeholder="Enter your current password" />
