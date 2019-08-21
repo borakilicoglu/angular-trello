@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService, untilDestroyed } from '@app/core';
 
@@ -15,9 +14,9 @@ const log = new Logger('Login');
 })
 export class LoginComponent implements OnInit, OnDestroy {
   version: string = environment.version;
-  error: string | undefined;
   loginForm!: FormGroup;
   isLoading = false;
+  message: any;
 
   constructor(
     private router: Router,
@@ -49,9 +48,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           log.debug(`${credentials.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
-        error => {
-          log.debug(`Login error: ${error}`);
-          this.error = error;
+        err => {
+          log.debug(`Login error: ${err}`);
+          this.message = {
+            text: err.error.message,
+            class: 'danger'
+          };
         }
       );
   }

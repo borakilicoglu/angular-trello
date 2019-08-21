@@ -20,9 +20,7 @@
           <div class="card-body">
             <h4 translate class="text-center mb-3">Log in to your account</h4>
             <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-              <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
-                Username or password incorrect.
-              </div>
+              <app-alert [data]="message"></app-alert>
               <div class="form-group">
                 <label class="d-block">
                   <input

@@ -11,7 +11,7 @@ export class AlertComponent implements OnInit {
   private _success = new Subject<string>();
   @Input() data: any;
   // staticAlertClosed = false;
-  mal: string;
+  message: string;
   class: string;
 
   ngOnInit(): void {
@@ -24,8 +24,8 @@ export class AlertComponent implements OnInit {
 
   setMessage = (data: any) => {
     this.class = data.class;
-    this._success.subscribe(message => (this.mal = message));
-    this._success.pipe(debounceTime(5000)).subscribe(() => (this.mal = null));
+    this._success.subscribe(message => (this.message = message));
+    this._success.pipe(debounceTime(5000)).subscribe(() => (this.message = null));
     this._success.next(data.text);
   };
 }

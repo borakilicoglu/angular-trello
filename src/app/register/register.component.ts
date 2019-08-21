@@ -15,9 +15,9 @@ const log = new Logger('Register');
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   version: string = environment.version;
-  error: string | undefined;
   registerForm!: FormGroup;
   isLoading = false;
+  message: any;
 
   constructor(
     private router: Router,
@@ -49,9 +49,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
           log.debug(`${credentials.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
-        error => {
-          log.debug(`Register error: ${error}`);
-          this.error = error;
+        err => {
+          log.debug(`Register error: ${err}`);
+          this.message = {
+            text: err.error.message,
+            class: 'danger'
+          };
         }
       );
   }
