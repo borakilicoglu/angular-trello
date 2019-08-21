@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService, CredentialsService, untilDestroyed } from '@app/core';
 import { finalize } from 'rxjs/operators';
@@ -9,7 +9,6 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  // @ViewChild(AlertComponent) child: AlertComponent;
   profileForm!: FormGroup;
   passwordForm!: FormGroup;
   isLoading = false;
@@ -20,11 +19,11 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private credentialsService: CredentialsService,
     private authenticationService: AuthenticationService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.createForm();
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {}
 

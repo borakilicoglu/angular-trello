@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService, untilDestroyed } from '@app/core';
 
@@ -45,8 +44,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe(
-        credentials => {
-          log.debug(`${credentials.username} successfully logged in`);
+        res => {
+          // log.debug(`${credentials.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         err => {

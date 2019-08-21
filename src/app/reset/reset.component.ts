@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService, untilDestroyed } from '@app/core';
 
@@ -15,10 +14,9 @@ const log = new Logger('Reset');
 })
 export class ResetComponent implements OnInit, OnDestroy {
   version: string = environment.version;
-  error: string | undefined;
   resetForm!: FormGroup;
   isLoading = false;
-  message: string;
+  message: any;
 
   constructor(
     private router: Router,
@@ -26,11 +24,11 @@ export class ResetComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.createForm();
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {}
 
@@ -50,13 +48,12 @@ export class ResetComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe(
-        credentials => {
-          // log.debug(`${credentials.username} successfully logged in`);
+        res => {
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         err => {
           log.debug(`Reset error: ${err}`);
-          this.error = err.error.message;
+          this.message = err.error.message;
         }
       );
   }
@@ -73,17 +70,17 @@ export class ResetComponent implements OnInit, OnDestroy {
     return this.i18nService.supportedLanguages;
   }
 
-  createForm() {
+  private createForm() {
     this.resetForm = this.formBuilder.group(
       {
-        password: ['', Validators.required],
-        passwordConfrim: ['', Validators.required]
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        passwordConfrim: ['', [Validators.required, Validators.minLength(8)]]
       },
       { validator: this.passwordMatchValidator }
     );
   }
 
-  passwordMatchValidator = (): any => {
+  private passwordMatchValidator = (): any => {
     if (this.resetForm) {
       let data =
         this.resetForm.get('password').value === this.resetForm.get('passwordConfrim').value

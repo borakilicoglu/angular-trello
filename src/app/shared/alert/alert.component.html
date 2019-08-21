@@ -1,10 +1,6 @@
-<!-- <div class="alert" *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
-  Check out our awesome new features!
-</div> -->
-<div class="alert alert-{{ class }}" *ngIf="message" type="success">
-  <button type="button" class="close" (click)="message = null">
+<div class="alert alert-{{ data.class }}" [class.mb-0]="data.freeze" *ngIf="message">
+  <button type="button" class="close" (click)="message = null" *ngIf="!data.freeze">
     <span aria-hidden="true">&times;</span>
   </button>
   {{ message }}
 </div>
-<!-- <button class="btn btn-primary" (click)="changeSuccessMessage()">Change message</button> -->

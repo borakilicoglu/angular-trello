@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService, untilDestroyed } from '@app/core';
 
@@ -18,10 +17,7 @@ export class ForgotComponent implements OnInit, OnDestroy {
   error: string | undefined;
   resetForm!: FormGroup;
   isLoading = false;
-  message: {
-    class: string;
-    text: string;
-  };
+  message: any;
 
   constructor(
     private router: Router,
@@ -49,14 +45,14 @@ export class ForgotComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe(
-        credentials => {
+        res => {
           this.message = {
             text:
               "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.",
-            class: 'success'
+            class: 'success',
+            freeze: true
           };
-          // log.debug(`${credentials.username} successfully logged in`);
-          // this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          console.log(this.message);
         },
         err => {
           log.debug(`Reset error: ${err}`);
