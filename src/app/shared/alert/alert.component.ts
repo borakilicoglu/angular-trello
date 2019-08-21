@@ -23,7 +23,6 @@ export class AlertComponent implements OnInit {
   }
 
   setMessage = (data: any) => {
-    console.log(data);
     this.class = data.class;
     this._success.subscribe(message => (this.mal = message));
     this._success.pipe(debounceTime(5000)).subscribe(() => (this.mal = null));

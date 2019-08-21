@@ -12,21 +12,19 @@
             {{ language }}
           </button>
         </div>
-      </div>
+      </div> 
     </div> -->
     <div class="container">
       <div class="col-md-4 mt-3 mx-auto">
         <div class="card">
-          <div class="card-body" [hidden]="!message">
-            <p class="mb-0">{{ message }}</p>
+          <div class="card-body mb-0" [hidden]="message && message.class !== 'success'">
+            <app-alert [data]="message"></app-alert>
           </div>
-          <div class="card-body" [hidden]="message">
+          <div class="card-body" [hidden]="message && message.class == 'success'">
             <h4 class="text-center mb-3" translate>Reset Password</h4>
             <p class="text-center">Enter your email address below and we'll send you a link to reset your password.</p>
+            <app-alert [data]="message"></app-alert>
             <form (ngSubmit)="forgot()" [formGroup]="resetForm" novalidate>
-              <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
-                Email incorrect.
-              </div>
               <div class="form-group">
                 <label class="d-block">
                   <input

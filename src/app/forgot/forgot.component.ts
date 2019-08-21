@@ -18,6 +18,10 @@ export class ForgotComponent implements OnInit, OnDestroy {
   error: string | undefined;
   resetForm!: FormGroup;
   isLoading = false;
+  message: {
+    class: string;
+    text: string;
+  };
 
   constructor(
     private router: Router,
@@ -28,7 +32,6 @@ export class ForgotComponent implements OnInit, OnDestroy {
   ) {
     this.createForm();
   }
-  public message: string;
 
   ngOnInit() {}
 
@@ -47,14 +50,20 @@ export class ForgotComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         credentials => {
-          this.message =
-            "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.";
+          this.message = {
+            text:
+              "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.",
+            class: 'success'
+          };
           // log.debug(`${credentials.username} successfully logged in`);
           // this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
-        error => {
-          log.debug(`Reset error: ${error}`);
-          this.error = error;
+        err => {
+          log.debug(`Reset error: ${err}`);
+          this.message = {
+            text: err.error.message,
+            class: 'danger'
+          };
         }
       );
   }
