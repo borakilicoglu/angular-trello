@@ -1,21 +1,9 @@
 @import "src/theme/theme-variables";
 
-// .logo {
-//   width: 100px;
-// }
-
-q {
-  font-style: italic;
-  font-size: 1.2rem;
-  quotes: "« " " »";
-}
-
 .jumbotron {
-  // padding: 0.5rem 0.5rem !important;
-  background: #282c34;
+  background: white;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   transition: all 0.2s ease-in-out;
-  // height: 80px;
   .btn-default:hover {
     background-color: rgba(9, 30, 66, 0.13);
   }
@@ -30,8 +18,4 @@ q {
 
 nav a.active {
   text-decoration: underline !important;
-}
-
-.row {
-  // margin-top: $spacer;
 }

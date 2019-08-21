@@ -1,94 +1,78 @@
 <div class="container-fluid mt-5 h-100">
   <div class="row">
-    <div class="col-sm-12">
-      <div class="row" *ngIf="starredBoards && starredBoards.length">
-        <div class="col-sm-12">
-          <h6 class="mb-2 font-weight-bold"><i class="fas fa-star mr-2"></i>Starred Boards</h6>
-        </div>
-        <div *ngFor="let board of starredBoards; let i = index" class="col-md-3">
-          <div class="jumbotron shadow">
-            <div class="d-flex">
-              <div class="flex-grow-1 align-self-center">
-                <p class="mb-0 text-white" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
-                <!-- <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small> -->
-              </div>
-              <div>
-                <button type="button" class="btn btn-dark float-right" (click)="starToggle(board.id)">
-                  <i class="fas fa-star text-white" *ngIf="board.star"></i>
-                  <i class="far fa-star text-white" *ngIf="!board.star"></i>
-                </button>
-              </div>
+    <div class="col-sm-3">
+      <h5 class="mb-2 text-danger"><i class="fas fa-user-circle mr-2"></i>Personal Boards</h5>
+      <div *ngFor="let board of personalBoards; let i = index">
+        <div class="jumbotron shadow">
+          <div class="d-flex">
+            <div class="flex-grow-1 align-self-center">
+              <p class="mb-0" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+            </div>
+            <div>
+              <button type="button" class="btn float-right" (click)="starToggle(board.id)">
+                <i class="fas fa-star" *ngIf="board.star"></i>
+                <i class="far fa-star" *ngIf="!board.star"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <app-add name="board" [create]="create"></app-add>
+    </div>
 
-      <div class="row" *ngIf="recentlyBoards && recentlyBoards.length">
-        <div class="col-sm-12">
-          <h6 class="mb-2 font-weight-bold"><i class="fas fa-clock mr-2"></i>Recently Viewed</h6>
-        </div>
-        <div *ngFor="let board of recentlyBoards; let i = index" class="col-md-3">
-          <div class="jumbotron shadow">
-            <div class="d-flex">
-              <div class="flex-grow-1 align-self-center">
-                <p class="mb-0 text-white" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
-                <!-- <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small> -->
-              </div>
-              <div>
-                <button type="button" class="btn btn-dark float-right" (click)="starToggle(board.id)">
-                  <i class="fas fa-star text-white" *ngIf="board.star"></i>
-                  <i class="far fa-star text-white" *ngIf="!board.star"></i>
-                </button>
-              </div>
+    <div class="col-sm-3">
+      <h5 class="mb-2 text-danger"><i class="fas fa-columns mr-2"></i>Boards</h5>
+      <div *ngFor="let board of boards; let i = index">
+        <div class="jumbotron shadow">
+          <div class="d-flex">
+            <div class="flex-grow-1 align-self-center">
+              <p class="mb-0" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+            </div>
+            <div>
+              <button type="button" class="btn float-right" (click)="starToggle(board.id)">
+                <i class="fas fa-star" *ngIf="board.star"></i>
+                <i class="far fa-star" *ngIf="!board.star"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <h6 class="mb-2 font-weight-bold"><i class="fas fa-columns mr-2"></i>Boards</h6>
-        </div>
-        <div *ngFor="let board of boards; let i = index" class="col-md-3">
-          <div class="jumbotron shadow">
-            <div class="d-flex">
-              <div class="flex-grow-1 align-self-center">
-                <p class="mb-0 text-white" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
-                <!-- <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small> -->
-              </div>
-              <div>
-                <button type="button" class="btn btn-dark float-right" (click)="starToggle(board.id)">
-                  <i class="fas fa-star text-white" *ngIf="board.star"></i>
-                  <i class="far fa-star text-white" *ngIf="!board.star"></i>
-                </button>
-              </div>
+    <div class="col-sm-3" *ngIf="starredBoards && starredBoards.length">
+      <h5 class="mb-2 text-danger"><i class="fas fa-star mr-2"></i>Starred Boards</h5>
+      <div *ngFor="let board of starredBoards; let i = index">
+        <div class="jumbotron shadow">
+          <div class="d-flex">
+            <div class="flex-grow-1 align-self-center">
+              <p class="mb-0" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+            </div>
+            <div>
+              <button type="button" class="btn float-right" (click)="starToggle(board.id)">
+                <i class="fas fa-star" *ngIf="board.star"></i>
+                <i class="far fa-star" *ngIf="!board.star"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <h6 class="mb-2 font-weight-bold"><i class="fas fa-user-circle mr-2"></i>Personal Boards</h6>
-        </div>
-        <div *ngFor="let board of personalBoards; let i = index" class="col-md-3">
-          <div class="jumbotron shadow">
-            <div class="d-flex">
-              <div class="flex-grow-1 align-self-center">
-                <p class="mb-0 text-white" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
-                <!-- <small class="mb-0 font-weight-bold" *ngIf="board" (click)="goToBoard(board.id)">{{ board.id }}</small> -->
-              </div>
-              <div>
-                <button type="button" class="btn btn-dark float-right" (click)="starToggle(board.id)">
-                  <i class="fas fa-star text-white" *ngIf="board.star"></i>
-                  <i class="far fa-star text-white" *ngIf="!board.star"></i>
-                </button>
-              </div>
+    <div class="col-sm-3" *ngIf="recentlyBoards && recentlyBoards.length">
+      <h5 class="mb-2 text-danger"><i class="fas fa-clock mr-2"></i>Recently Viewed</h5>
+      <div *ngFor="let board of recentlyBoards; let i = index">
+        <div class="jumbotron shadow">
+          <div class="d-flex">
+            <div class="flex-grow-1 align-self-center">
+              <p class="mb-0" *ngIf="board" (click)="goToBoard(board.id)">{{ board.name }}</p>
+            </div>
+            <div>
+              <button type="button" class="btn float-right" (click)="starToggle(board.id)">
+                <i class="fas fa-star" *ngIf="board.star"></i>
+                <i class="far fa-star" *ngIf="!board.star"></i>
+              </button>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <app-add name="board" [create]="create"></app-add>
         </div>
       </div>
     </div>
