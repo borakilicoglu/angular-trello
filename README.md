@@ -1,8 +1,8 @@
 # angular-trello
 
-:pizza:Trello clone with Angular.
+![image](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ryadel.com%2Fwp-content%2Fuploads%2F2017%2F10%2Fangular-logo.jpg&f=1&nofb=1)
 
-## Setup
+## Installation
 
 1. `git clone https://github.com/borakilicoglu/angular-trello`
 2. `npm install`
