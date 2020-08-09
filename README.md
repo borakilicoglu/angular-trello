@@ -1,6 +1,6 @@
 # angular-trello
 
-![image](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ryadel.com%2Fwp-content%2Fuploads%2F2017%2F10%2Fangular-logo.jpg&f=1&nofb=1)
+![image](https://www.valuecoders.com/blog/wp-content/uploads/2019/03/angulr8feat.jpg)
 
 ## Installation
 
